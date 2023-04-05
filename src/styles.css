@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+.btn-floating.fixed-bottom {
+  position: fixed;
+  top: auto;
+  bottom: 20px;
+  right: 20px;
+}
+.btn-whatsapp {
+  color: white;
+  background-color: #4dc247;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+  border-radius: 50%;
+  border: 0;
+}
+.btn-floating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  color: rgba(54,57,61,0.8);
+  fill: rgba(54,57,61,0.8);
+  background-color: #fff;
+  border: 2px solid rgba(54,57,61,0.8);
+  font-size: 18px;
+  z-index: 100;
+}
+.visible-when-content-ready {
+  visibility: visible !important;
+}
+
+
+.a {
+  color: #36393D;
+  text-decoration: none;
+  background: 0 0;
+}
+
+.* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
