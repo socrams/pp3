@@ -1,0 +1,29 @@
+<p>register works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">nombre</th>
+      <th scope="col">password segurisimo</th>
+      <th scope="col">telefono</th>
+      <th scope="col">email</th>
+      <th scope="col">nombre completo</th>
+      <th scope="col"> Accion </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of this.users">
+      <th>{{user.id}}</th>
+      <th>{{user.name}}</th>
+      <th>{{user.password}}</th>
+      <th>{{user.email}}</th>
+      <th>{{user.phone}}</th>
+      <th>{{user.full_name}}</th>
+      <th>
+        <button (click)="editUser(user.id)" class="btn-warning">E</button>
+        <button (click)="deleteUser(user.id)" class="bt-primary">D</button>
+      </th>
+
+    </tr>
+  </tbody>
+</table>

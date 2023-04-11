@@ -1,0 +1,67 @@
+<body class="bg-light">
+
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="
+      https://static.wikia.nocookie.net/eswikia/images/d/df/Pok%C3%A9mon.png
+      "
+       alt="" width="200" height="110">
+      <h2>Mi cuenta</h2>
+      <!-- <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Informacion </h4>
+        <form class="needs-validation" novalidate>
+
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">Nombre de usuario</label>
+              <input [(ngModel)]="this.usuario.name"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input [(ngModel)]="this.usuario.email" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="password" class="form-label">Password</label>
+              <input [(ngModel)]="this.usuario.password"  [ngModelOptions]="{standalone: true}" type="password" class="form-control" placeholder="*****" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Nombre Completo</label>
+              <input [(ngModel)]="this.usuario.full_name"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Jonh Doe" required>
+            </div>
+
+
+            <div class="col-12">
+              <label for="phone" class="form-label">Telefono</label>
+              <input [(ngModel)]="this.usuario.phone" [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="phone" placeholder="11 1111 1111" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+          </div>
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit"(click)="getDatos()">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+

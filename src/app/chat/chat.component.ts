@@ -16,7 +16,7 @@ export class formaMensaje {
 export class ChatComponent {
   @ViewChild('listamsj') private listamsj?: ElementRef;
   title = 'chat';
-  url: string = 'http://localhost:5000/';
+  url: string = 'http://localhost:5000/chat/';
   todosLosMensajes: formaMensaje[]=[];
   msj:any;
   side: boolean = true;
