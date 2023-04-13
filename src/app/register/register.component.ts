@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -21,25 +22,22 @@ url: string = "http://127.0.0.1:5000/users/";
   getAllUsers(){
     this.http.get<Usuario[]>(this.url)
     .subscribe((data ) => {
-          this.users = data;
+      this.users = data;
       console.log(this.users);
-      console.log(this.users[2].full_name);
     });
+    this.users = []
   }
 
   deleteUser(id: number){
-    console.log("Entre");
     this.http.delete(this.url+id)
     .subscribe((data ) => {
-
       console.log(data);
-      //console.log(this.users[2].full_name);
+      this.getAllUsers()
     });
   }
 
   editUser(id: number) {
     this.route.navigateByUrl("/user?id="+id);
-   // window.location.href="/user/"+id;
   }
 
 

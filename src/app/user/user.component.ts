@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../modelo/usuario';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -13,13 +13,12 @@ export class UserComponent {
   url: string = "http://127.0.0.1:5000/users/"
   usuario: Usuario;
 
-  constructor (public http: HttpClient, private aRoute: ActivatedRoute) {
+  constructor (public http: HttpClient, private aRoute: ActivatedRoute, public route:Router) {
     this.usuario = new Usuario();
     this.aRoute.queryParams.subscribe(params => {
       if (params['id'] != null){
         this.getUser(params['id']);
       }
-
     });
 
   }
@@ -30,7 +29,7 @@ export class UserComponent {
     )
   }
 
-  getDatos(){
+  postDatos(){
     if (this.usuario.id === null) {
       this.http.post(this.url,this.usuario).subscribe(
         response => {
@@ -44,6 +43,6 @@ export class UserComponent {
           }
         )
     }
-    
+    this.route.navigateByUrl("/userlist")
   }
 }
