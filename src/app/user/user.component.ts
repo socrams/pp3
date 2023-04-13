@@ -30,7 +30,8 @@ export class UserComponent {
   }
 
   postDatos(){
-    if (this.usuario.id === null) {
+    console.log(this.usuario);
+    if (this.usuario.id === 0) {
       this.http.post(this.url,this.usuario).subscribe(
         response => {
           console.log('respuesta: ', response);
