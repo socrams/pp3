@@ -1,7 +1,7 @@
 .cardContainer{
   width: 500px;
   height: 500px;
-  position: absolute;
+  position: flex;
   padding: 0.3rem;
   /* right: 0.5rem;
     bottom: 0.5rem; */

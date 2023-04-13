@@ -1,37 +1,28 @@
-  <div>
-    <a class="mt-4 btn btn-primary" routerLink="/user">USUARIOS</a>
-  </div>
-  <div>
-    <a class="mt-4 btn btn-primary" routerLink="/chat">CHAT</a>
-  </div>
-  <div>
-    <a class="mt-4 btn btn-primary" routerLink="/userlist">TODOS LOS USUARIOS</a>
-  </div>
-<div class="card text-center cardContainer">
-  <div class="card-header">
-    ITB Chat
-  </div>
-  <div class="card-body msj-container h-100" #listamsj>
-    <div>
-      <p *ngFor="let mensaje of todosLosMensajes" [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'" >
-        {{mensaje.respuesta}}
-        <span class="time">
-          {{mensaje.hora}}
-        </span>
-      </p>
-    </div>
-  </div>
-  <form class="card-footer text-muted input-group" (ngSubmit)="getData()">
-    <div>
-
-    </div>
-      <input class="form-control"  type="text" [(ngModel)]="msj"
-      [ngModelOptions]="{standalone: true}" placeholder="ingresar mensaje">
-      <div class="input-group-text" id="basic-addon2" (click)="getData()">
-        <span>
-          <img src="https://cdn.icon-icons.com/icons2/1875/PNG/512/send_120237.png" alt="enviar" width="10px">
-        </span>
+<app-navbar></app-navbar>
+    <div class="card text-center cardContainer">
+      <div class="card-header">
+        ITB Chat
       </div>
-  </form>
-</div>
+      <div class="card-body msj-container h-100" #listamsj>
+        <div>
+          <p *ngFor="let mensaje of todosLosMensajes" [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
+            {{mensaje.respuesta}}
+            <span class="time">
+              {{mensaje.hora}}
+            </span>
+          </p>
+        </div>
+      </div>
+      <form class="card-footer text-muted input-group" (ngSubmit)="getData()">
+        <div>
 
+        </div>
+        <input class="form-control" type="text" [(ngModel)]="msj" [ngModelOptions]="{standalone: true}"
+          placeholder="ingresar mensaje">
+        <div class="input-group-text" id="basic-addon2" (click)="getData()">
+          <span>
+            <img src="https://cdn.icon-icons.com/icons2/1875/PNG/512/send_120237.png" alt="enviar" width="10px">
+          </span>
+        </div>
+      </form>
+    </div>

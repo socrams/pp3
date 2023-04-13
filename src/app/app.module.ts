@@ -10,6 +10,7 @@ import { ChatComponent } from './chat/chat.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RegisterComponent } from './register/register.component';
     ChatComponent,
     WelcomeComponent,
     UserComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
