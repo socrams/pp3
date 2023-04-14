@@ -1,0 +1,23 @@
+.btn {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border: 2px solid #007bff; /* Color del borde */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-right: 10px; /* Espacio externo derecho */
+  margin-bottom: 10px; /* Espacio externo inferior */
+  text-align: center;
+  text-decoration: none;
+  color: #007bff; /* Color del texto */
+  background-color: transparent;
+  transition: background-color 0.3s ease; /* Transición de color de fondo al hacer hover */
+}
+
+.btn-primary:hover {
+  background-color: #007bff; /* Color de fondo al hacer hover */
+  color: #fff; /* Color del texto al hacer hover */
+}
+.btn-danger:hover {
+  background-color: #ff0000; /* Color de fondo al hacer hover */
+  color: #fff; /* Color del texto al hacer hover */
+}
