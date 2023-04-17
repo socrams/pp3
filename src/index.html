@@ -14,3 +14,33 @@
   <app-root></app-root>
 </body>
 </html>
+
+
+<!-- CREATE TABLE `USERS` (
+`id` bigint(20) NOT NULL AUTO_INCREMENT,
+`description` varchar(255) DEFAULT NULL,
+`name` varchar(255) DEFAULT NULL,
+`password` varchar(255) DEFAULT NULL,
+`email` varchar(255) DEFAULT NULL,
+`full_name` varchar(255) DEFAULT NULL,
+`phone` varchar(255) DEFAULT NULL,
+`enabled` int(1) NOT NULL,
+`status` int(1) DEFAULT NULL,
+`creation_date` datetime DEFAULT NULL,
+`creation_user_id` bigint(20) DEFAULT NULL,
+`last_update` datetime DEFAULT NULL,
+`last_update_user_id` bigint(20) DEFAULT NULL,
+`last_reset_password` datetime DEFAULT NULL,
+`should_reset_password` bit(1) NOT NULL,
+PRIMARY KEY (`id`),
+UNIQUE KEY `name` (`name`),
+KEY `FKF10D48B7F4968207` (`id`) )
+ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci
+
+
+
+select * from USERS
+
+show tables
+
+use chat_server -->
