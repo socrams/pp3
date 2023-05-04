@@ -20,6 +20,7 @@ export class ChatComponent {
   todosLosMensajes: formaMensaje[]=[];
   msj:any;
   side: boolean = true;
+  test:string = "Hola \n como stas";
 
   /**
    *
@@ -45,6 +46,8 @@ export class ChatComponent {
     this.todosLosMensajes.push(this.getMiMensaje())
     this.http.get<formaMensaje>(this.url + this.msj)
     .subscribe((data ) => {
+      // data.respuesta = data.respuesta.replace(/\n/g, "\n");
+      console.log(data.respuesta);
       this.todosLosMensajes.push(data);
     });
     this.msj = "";
