@@ -4,14 +4,15 @@
         ITB Chat
       </div>
       <div class="card-body msj-container h-100" #listamsj>
-          <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes"
-          [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
+        <div>
+          <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes" [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
             {{mensaje.respuesta}}
             <span class="time">
               {{mensaje.hora}}
             </span>
-          </p >
+          </p>
         </div>
+      </div>
       <form class="card-footer text-muted input-group" (ngSubmit)="getData()">
         <div>
 
