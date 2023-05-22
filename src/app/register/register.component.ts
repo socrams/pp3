@@ -18,7 +18,8 @@ export class RegisterComponent implements OnInit {
     this.users = [];
     this.getAllUsers();
   }
-  constructor(public http: HttpClient, public route: Router) {
+ 
+constructor(public http: HttpClient, public route: Router, public apiService: ApiService) {
     this.getAllUsers();
     this.users = [];
   }
