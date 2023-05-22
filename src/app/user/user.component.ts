@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../modelo/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-user',
@@ -24,7 +25,7 @@ export class UserComponent {
   }
 
   getUser(id: number){
-    this.http.get<Usuario>(this.url + id).subscribe(
+    this.apiService.callURL<Usuario>('GET', 'users/' + id, null).subscribe(
       response => { this.usuario = response; }
     )
   }
