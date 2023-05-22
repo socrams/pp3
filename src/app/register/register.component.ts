@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../modelo/usuario';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -23,10 +24,9 @@ export class RegisterComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.http.get<Usuario[]>(this.url)
+    this.apiService.callURL<Usuario[]>('GET', 'users/', null)
       .subscribe((data) => {
         this.users = data;
-        console.log(this.users);
       });
     this.users = []
   }
