@@ -14,7 +14,7 @@ export class UserComponent {
   url: string = "http://127.0.0.1:5000/users/"
   usuario: Usuario;
 
-  constructor (public http: HttpClient, private aRoute: ActivatedRoute, public route:Router) {
+   constructor (public http: HttpClient, private aRoute: ActivatedRoute, public route:Router, public apiService: ApiService) {
     this.usuario = new Usuario();
     this.aRoute.queryParams.subscribe(params => {
       if (params['id'] != null){
