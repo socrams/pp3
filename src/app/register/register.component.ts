@@ -23,7 +23,7 @@ constructor(public http: HttpClient, public route: Router, public apiService: Ap
     this.apiService.callURL<Usuario[]>('GET', 'users/', null)
       .subscribe((data) => {
         this.users = data;
-        console.log(this.users)
+        console.log(this.users);
       });
     // this.users = []
   }
