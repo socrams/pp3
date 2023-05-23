@@ -1,19 +1,5 @@
-<!-- make login? -->
-<!DOCTYPE html>
-<html lang="en">
+
 <app-navbar>  </app-navbar>
-    <!-- <h1 id="login-header">Login</h1>
-
-    <div id="login-error-msg-holder">
-      <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
-    </div>
-
-
-      <input [(ngModel)]="username" type="mail" name="username" id="username-field" class="login-form-field" placeholder="Username">
-      <input  [(ngModel)]="password" type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-      <button (click)="ngOnSubmit()" type="submit" value="Login" id="login-form-submit">button </button>
- -->
-<!-- login.component.html -->
 <div class="login-container" style="background-color: black; color: white; padding: 20px;">
   <h2 class="text-center">Iniciar sesión</h2>
   <form>
@@ -25,7 +11,7 @@
       <label for="password">Contraseña:</label>
       <input type="password" id="password" class="form-control" [(ngModel)]="password">
     </div>
-    <div class="text-center mt-3"> <!-- Agregamos una clase "mt-3" para dar espacio -->
+    <div class="text-center mt-3">
       <button class="btn btn-primary custom-button" (click)="ngOnSubmit()">Iniciar sesión</button>
     </div>
   </form>
