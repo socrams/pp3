@@ -1,0 +1,14 @@
+/* login.component.css */
+.login-container {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-3 {
+    margin-top: 15px;
+    /* Ajusta este valor para el espacio deseado */
+}
