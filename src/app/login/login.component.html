@@ -15,7 +15,7 @@
  -->
 <!-- login.component.html -->
 <div class="login-container" style="background-color: black; color: white; padding: 20px;">
-  <h2>Iniciar sesión</h2>
+  <h2 class="text-center">Iniciar sesión</h2>
   <form>
     <div class="form-group">
       <label for="username">Usuario:</label>
@@ -26,7 +26,7 @@
       <input type="password" id="password" class="form-control" [(ngModel)]="password">
     </div>
     <div class="text-center mt-3"> <!-- Agregamos una clase "mt-3" para dar espacio -->
-      <button class="btn btn-primary" (click)="ngOnSubmit()">Iniciar sesión</button>
+      <button class="btn btn-primary custom-button" (click)="ngOnSubmit()">Iniciar sesión</button>
     </div>
   </form>
 </div>
