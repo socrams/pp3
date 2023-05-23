@@ -1,1 +1,17 @@
-<p>login works!</p>
+<!-- make login? -->
+<!DOCTYPE html>
+<html lang="en">
+<app-navbar>  </app-navbar>
+    <h1 id="login-header">Login</h1>
+
+    <div id="login-error-msg-holder">
+      <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+    </div>
+
+
+      <input [(ngModel)]="username" type="mail" name="username" id="username-field" class="login-form-field" placeholder="Username">
+      <input  [(ngModel)]="password" type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+      <button (click)="ngOnSubmit()" type="submit" value="Login" id="login-form-submit">button </button>
+
+
+

@@ -13,9 +13,8 @@ export class ApiService {
 
   private url: string = 'http://127.0.0.1:5000/';
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.token = '';
-    this.login('mail@mail.com.ar', 'password');
   }
 
   login(_mail: string, _password: string) {
@@ -23,14 +22,14 @@ export class ApiService {
       mail: _mail,
       password: _password
     };
-    this.http.post<any>(this.url + 'login', 
-                        JSON.stringify(credentials), 
+    this.http.post<any>(this.url + 'login',
+                        JSON.stringify(credentials),
                         {headers: {'Content-type': 'application/json'}}).subscribe(
                           response => {
                                 this.token = response.message;
                                 this.tokenSubject.next(this.token);
                               }
-                            );      
+                            );
   }
 
   getToken(): Observable<string> {
@@ -38,11 +37,12 @@ export class ApiService {
   }
 
   callURL<T>(method: string, url: string, body?: any): Observable<T> {
-     return new Observable<T>(observer => { 
+     return new Observable<T>(observer => {
       this.getToken().subscribe(token => {
         if (token) {
           this.callURLWithToken<T>(method, url, token, body).subscribe(
             response => {
+              // console.log('llego');
               observer.next(response);
               observer.complete();
             },
@@ -56,7 +56,7 @@ export class ApiService {
      })
     })
   }
-  
+
   private callURLWithToken<T>(method: string, url: string, token: string, body?: any): Observable<T> {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', token);

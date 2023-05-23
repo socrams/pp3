@@ -10,26 +10,22 @@ import { ApiService } from '../services/api.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   users: Usuario[];
   url: string = "http://127.0.0.1:5000/users/";
 
-  ngOnInit(): void {
-    this.users = [];
-    this.getAllUsers();
-  }
- 
 constructor(public http: HttpClient, public route: Router, public apiService: ApiService) {
+  this.users = [];
     this.getAllUsers();
-    this.users = [];
   }
 
   getAllUsers() {
     this.apiService.callURL<Usuario[]>('GET', 'users/', null)
       .subscribe((data) => {
         this.users = data;
+        console.log(this.users)
       });
-    this.users = []
+    // this.users = []
   }
 
   deleteUser(id: number) {
