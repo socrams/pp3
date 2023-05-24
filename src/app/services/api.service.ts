@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -13,7 +15,7 @@ export class ApiService {
 
   private url: string = 'http://127.0.0.1:5000/';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: Router, private authService: AuthService) {
     this.token = '';
   }
 
@@ -22,27 +24,37 @@ export class ApiService {
       mail: _mail,
       password: _password
     };
-    this.http.post<any>(this.url + 'login',
-                        JSON.stringify(credentials),
-                        {headers: {'Content-type': 'application/json'}}).subscribe(
-                          response => {
-                                this.token = response.message;
-                                this.tokenSubject.next(this.token);
-                              }
-                            );
+    return new Observable<any>(observer => {
+      this.http.post<any>(this.url + 'login',
+      JSON.stringify(credentials),
+      {headers: {'Content-type': 'application/json'}}).subscribe(
+        response => {
+              if (response.message !== 'ERROR') {
+                this.token = response.message;
+                this.tokenSubject.next(this.token);
+                this.authService.setToken(this.token);
+                observer.next(true);
+              } else {
+                observer.next(false);
+              }
+              observer.complete();
+            }, error => {
+              observer.next(false);
+              observer.complete();
+            })
+    });
   }
 
-  getToken(): Observable<string> {
-    return this.tokenSubject.asObservable();
-  }
+  //getToken(): Observable<string> {
+  //  return this.tokenSubject.asObservable();
+  //}
 
   callURL<T>(method: string, url: string, body?: any): Observable<T> {
      return new Observable<T>(observer => {
-      this.getToken().subscribe(token => {
+      let token = this.authService.getToken();
         if (token) {
           this.callURLWithToken<T>(method, url, token, body).subscribe(
             response => {
-              // console.log('llego');
               observer.next(response);
               observer.complete();
             },
@@ -53,8 +65,7 @@ export class ApiService {
         } else {
           observer.error('Token no disponible');
         }
-     })
-    })
+     });
   }
 
   private callURLWithToken<T>(method: string, url: string, token: string, body?: any): Observable<T> {
