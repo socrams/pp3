@@ -35,13 +35,14 @@ export class UserComponent {
       this.apiService.callURL('POST', 'users/', this.usuario).subscribe(
         response => {
           console.log('respuesta: ', response);
+          this.route.navigateByUrl("/userlist")
         });
     } else {
       this.apiService.callURL('PUT', 'users/', this.usuario).subscribe(
         response => {
           console.log('respuesta: ', response);
+          this.route.navigateByUrl("/userlist")
         });
     }
-    this.route.navigateByUrl("/userlist")
   }
 }
