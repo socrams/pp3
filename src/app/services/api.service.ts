@@ -10,13 +10,10 @@ import { AuthService } from './auth.service';
 })
 export class ApiService {
 
-  private token: string;
-  private tokenSubject: Subject<string> = new Subject<string>();
 
   private url: string = 'http://127.0.0.1:5000/';
 
   constructor(private http: HttpClient, private route: Router, private authService: AuthService) {
-    this.token = '';
   }
 
   login(_mail: string, _password: string) {
@@ -30,9 +27,7 @@ export class ApiService {
       {headers: {'Content-type': 'application/json'}}).subscribe(
         response => {
               if (response.message !== 'ERROR') {
-                this.token = response.message;
-                this.tokenSubject.next(this.token);
-                this.authService.setToken(this.token);
+                this.authService.setToken(response.message);
                 observer.next(true);
               } else {
                 observer.next(false);
@@ -45,27 +40,34 @@ export class ApiService {
     });
   }
 
-  //getToken(): Observable<string> {
-  //  return this.tokenSubject.asObservable();
-  //}
-
   callURL<T>(method: string, url: string, body?: any): Observable<T> {
      return new Observable<T>(observer => {
       let token = this.authService.getToken();
-        if (token) {
-          this.callURLWithToken<T>(method, url, token, body).subscribe(
-            response => {
-              observer.next(response);
-              observer.complete();
-            },
-            error => {
-              observer.error(error);
-            }
-          );
-        } else {
-          observer.error('Token no disponible');
-        }
+        this.callURLWithToken<T>(method, url, token, body).subscribe(
+          response => {
+            observer.next(response);
+            observer.complete();
+          },
+          error => {
+            observer.error(error);
+            observer.complete();
+          }
+        );
      });
+  }
+
+  validateToken(): any {
+    this.callURL<any>('GET', 'validateToken/', null).subscribe(
+      response => {
+        if (response.message != 'token valido') {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      error => {
+        return false;
+      });
   }
 
   private callURLWithToken<T>(method: string, url: string, token: string, body?: any): Observable<T> {

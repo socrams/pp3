@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,9 @@ export class AuthService {
 
   getToken(): string {
     let _token = localStorage.getItem(this.TOKEN_KEY);
-    if (_token) {
+    if (_token && _token != "") {
       return _token;
     } else {
-      this.route.navigateByUrl('/login');
       return "";
     }
   }

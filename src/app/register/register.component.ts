@@ -12,7 +12,7 @@ import { ApiService } from '../services/api.service';
 })
 export class RegisterComponent implements OnInit {
   users: Usuario[];
-  
+
   constructor(public http: HttpClient, public route: Router, public apiService: ApiService) {
     this.users = [];
   }
@@ -25,6 +25,8 @@ export class RegisterComponent implements OnInit {
     this.apiService.callURL<Usuario[]>('GET', 'users/', null)
       .subscribe((data) => {
         this.users = data;
+    }, error => {
+      this.route.navigateByUrl("login");
     });
   }
 

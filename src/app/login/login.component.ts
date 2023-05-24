@@ -17,7 +17,6 @@ export class LoginComponent {
 
   onSubmit() {
     this.apiService.login(this.username, this.password).subscribe(response => {
-      console.log(response); 
       if (response === true) {
         this.route.navigate(['/userlist']);
       }

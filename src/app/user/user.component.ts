@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../modelo/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -11,10 +12,9 @@ import { ApiService } from '../services/api.service';
 })
 
 export class UserComponent {
-  url: string = "http://127.0.0.1:5000/users/"
   usuario: Usuario;
 
-   constructor (public http: HttpClient, private aRoute: ActivatedRoute, public route:Router, public apiService: ApiService) {
+   constructor (public http: HttpClient, private aRoute: ActivatedRoute, public route:Router, public apiService: ApiService, private authService: AuthService) {
     this.usuario = new Usuario();
     this.aRoute.queryParams.subscribe(params => {
       if (params['id'] != null){
@@ -31,19 +31,16 @@ export class UserComponent {
   }
 
   postDatos(){
-    console.log(this.usuario);
     if (this.usuario.id === 0) {
-      this.http.post(this.url,this.usuario).subscribe(
+      this.apiService.callURL('POST', 'users/', this.usuario).subscribe(
         response => {
           console.log('respuesta: ', response);
-          }
-        )
+        });
     } else {
-      this.http.put(this.url,this.usuario).subscribe(
+      this.apiService.callURL('PUT', 'users/', this.usuario).subscribe(
         response => {
           console.log('respuesta: ', response);
-          }
-        )
+        });
     }
     this.route.navigateByUrl("/userlist")
   }
