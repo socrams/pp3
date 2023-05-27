@@ -30,6 +30,7 @@ export class ApiService {
                 this.authService.setToken(response.message);
                 observer.next(true);
               } else {
+                this.authService.removeToken();
                 observer.next(false);
               }
               observer.complete();

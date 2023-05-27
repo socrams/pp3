@@ -13,9 +13,12 @@ import { AuthService } from '../services/auth.service';
 
 export class UserComponent {
   usuario: Usuario;
+  passwordValue: string;
 
-   constructor (public http: HttpClient, private aRoute: ActivatedRoute, public route:Router, public apiService: ApiService, private authService: AuthService) {
+   constructor (public http: HttpClient, private aRoute: ActivatedRoute, 
+                public route:Router, public apiService: ApiService, private authService: AuthService) {
     this.usuario = new Usuario();
+    this.passwordValue = "";
     this.aRoute.queryParams.subscribe(params => {
       if (params['id'] != null){
         this.getUser(params['id']);
@@ -26,8 +29,18 @@ export class UserComponent {
 
   getUser(id: number){
     this.apiService.callURL<Usuario>('GET', 'users/' + id, null).subscribe(
-      response => { this.usuario = response; }
+      response => { this.usuario = response; 
+        this.passwordValue = this.usuario.password;
+        console.log(this.passwordValue); }
     )
+  }
+
+  async encryptPass() {
+    let password = this.passwordValue;
+    console.log(password);
+    if (password && password != null) {
+      this.usuario.password = await this.authService.encryptPassword(password);
+    }
   }
 
   postDatos(){

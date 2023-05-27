@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from './api.service';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ import { ApiService } from './api.service';
 export class AuthService {
 
   private readonly TOKEN_KEY = 'cbToken';
+  private readonly SALT_LENGTH: number =  2;
 
   constructor(private route: Router) { }
 
@@ -29,4 +30,8 @@ export class AuthService {
     this.route.navigateByUrl('login');
   }
 
+  async encryptPassword(password: string): Promise<string> {
+    let hash = CryptoJS.SHA256(password).toString();
+    return hash;
+  }
 }

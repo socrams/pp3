@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {path:'', component:WelcomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'user', component:UserComponent},
   {path:'userlist', component:RegisterComponent},
   {path:'nav', component:NavbarComponent},
+  {path:'logout', component: LogoutComponent}
 
 ];
 
