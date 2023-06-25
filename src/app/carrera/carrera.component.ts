@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Carrera } from '../modelo/carrera';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { Materia } from '../modelo/materia';
 
 @Component({
   selector: 'app-carrera',
@@ -10,10 +11,12 @@ import { Router } from '@angular/router';
 })
 export class CarreraComponent {
   carreras: Carrera[];
+  materias: Materia[];
   addCarrera : Carrera;
   mostrar:boolean = false;
   constructor(public apiService:ApiService, public route:Router, ) {
     this.carreras = [];
+    this.materias = [];
     this.addCarrera = new Carrera();
   }
   ngOnInit(): void {
@@ -32,7 +35,7 @@ export class CarreraComponent {
     this.mostrar = true;
     this.apiService.callURL<Carrera>('GET', 'carrera/' + id, null).subscribe(
       response => { this.addCarrera = response;
-        console.log(this.addCarrera) }
+        alert(JSON.stringify(response)); }
     )
   }
 agregarCarrera(){
@@ -44,13 +47,13 @@ agregarCarrera(){
     if (this.addCarrera.id === undefined) {
       this.apiService.callURL('POST', 'carrera', this.addCarrera).subscribe(
         response => {
-          console.log('respuesta: ', response);
+          alert(JSON.stringify(response));
           this.ngOnInit()
         });
       } else {
       this.apiService.callURL('PUT', 'carrera', this.addCarrera).subscribe(
         response => {
-          console.log('respuesta: ', response);
+          alert(JSON.stringify(response));
           this.ngOnInit()
         });
     }
@@ -62,6 +65,16 @@ agregarCarrera(){
         console.log(data);
         this.ngOnInit();
       });
+    }
+
+    verMaterias(id?: number | null){
+      this.apiService.callURL<Materia[]>('GET', '/carrera/materias/', null)
+      .subscribe((data) => {
+        this.materias = data;
+    }, error => {
+      this.route.navigateByUrl("login");
+    });
+    console.log(this.materias);
     }
 }
 
