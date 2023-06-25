@@ -14,10 +14,12 @@ export class CarreraComponent {
   materias: Materia[];
   addCarrera : Carrera;
   mostrar:boolean = false;
+  mostrarMaterias:boolean = false;
   constructor(public apiService:ApiService, public route:Router, ) {
     this.carreras = [];
     this.materias = [];
     this.addCarrera = new Carrera();
+
   }
   ngOnInit(): void {
     this.getAllCareer();
@@ -48,12 +50,14 @@ agregarCarrera(){
       this.apiService.callURL('POST', 'carrera', this.addCarrera).subscribe(
         response => {
           alert(JSON.stringify(response));
+          this.mostrar = !this.mostrar;
           this.ngOnInit()
         });
       } else {
       this.apiService.callURL('PUT', 'carrera', this.addCarrera).subscribe(
         response => {
           alert(JSON.stringify(response));
+          this.mostrar = !this.mostrar;
           this.ngOnInit()
         });
     }
@@ -68,13 +72,18 @@ agregarCarrera(){
     }
 
     verMaterias(id?: number | null){
-      this.apiService.callURL<Materia[]>('GET', '/carrera/materias/', null)
+      this.apiService.callURL<Materia[]>('GET', 'carrera/materias/'+id, null)
       .subscribe((data) => {
+        this.mostrarMaterias = true;
         this.materias = data;
+        console.log(this.materias);
     }, error => {
-      this.route.navigateByUrl("login");
+      console.log("error")
     });
-    console.log(this.materias);
+    }
+
+    editarMateria(id?: number | null){
+
     }
 }
 

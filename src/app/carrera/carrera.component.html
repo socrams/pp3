@@ -5,8 +5,9 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Description</th>
+            <th scope="col">Carrera</th>
             <th scope="col">Duration</th>
+            <th scope="col">VerMaterias</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -14,12 +15,16 @@
           <tr *ngFor="let carrera of carreras">
             <td>{{carrera.descripcion}}</td>
             <td>{{carrera.duracion}}</td>
+
             <td>
               <button (click)="verMaterias(carrera.id)" class="btn btn-info">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
                   <path d="M12 2L2 7l10 5 10-5v9a4.978 4.978 0 0 1-2 3.993V20h3v2H1v-2h3v-1.007A4.978 4.978 0 0 1 2 14V5l10 5 10-5 1 1v10h2V6L12 11 1 6z" />
                 </svg>
               </button>
+            </td>
+            <td>
+
               <button (click)="editarCarrera(carrera.id)" class="btn btn-danger">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
                   <path d="M0 0h24v24H0z" fill="none" />
@@ -66,7 +71,65 @@
           </form>
         </div>
       </div>
+
+      <div class="card mt-4" *ngIf="mostrarMaterias">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Año</th>
+            <th scope="col">Materia</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let materia of materias">
+            <td>{{materia.anio}}</td>
+            <td>{{materia.descripcion}}</td>
+            <td>
+            <button (click)="editarMateria(materia.id)" class="btn btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path d="M19.71 5.04a3.973 3.973 0 0 0-5.65 0L2 17.25V22h4.75L19.71 9.71a3.973 3.973 0 0 0 0-5.67zm-1.42 4.25L8.54 19H6v-2.54L17.29 8.29a2.007 2.007 0 0 1 2.83 2.83z" />
+                </svg>
+              </button>
+              <button (click)="borrar(materia.id)" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path d="M19 6h-4L11.5 4h-3L5 6H1v2h18V6zm-3 2H4V20h12V8z" />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </main>
   </div>
-</body>
 
