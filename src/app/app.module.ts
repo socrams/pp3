@@ -12,6 +12,7 @@ import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoutComponent } from './logout/logout.component';
+import { CarreraComponent } from './carrera/carrera.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LogoutComponent } from './logout/logout.component';
     UserComponent,
     RegisterComponent,
     NavbarComponent,
-    LogoutComponent
+    LogoutComponent,
+    CarreraComponent
   ],
   imports: [
     BrowserModule,

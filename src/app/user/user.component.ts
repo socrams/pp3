@@ -15,8 +15,9 @@ export class UserComponent {
   usuario: Usuario;
   passwordValue: string;
 
-   constructor (public http: HttpClient, private aRoute: ActivatedRoute, 
-                public route:Router, public apiService: ApiService, private authService: AuthService) {
+   constructor (public http: HttpClient, private aRoute: ActivatedRoute,
+                public route:Router, public apiService: ApiService,
+                private authService: AuthService) {
     this.usuario = new Usuario();
     this.passwordValue = "";
     this.aRoute.queryParams.subscribe(params => {
@@ -29,7 +30,7 @@ export class UserComponent {
 
   getUser(id: number){
     this.apiService.callURL<Usuario>('GET', 'users/' + id, null).subscribe(
-      response => { this.usuario = response; 
+      response => { this.usuario = response;
         this.passwordValue = this.usuario.password;
         console.log(this.passwordValue); }
     )
