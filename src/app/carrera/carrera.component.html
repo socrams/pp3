@@ -45,11 +45,11 @@
           <form class="p-5 needs-validation" novalidate>
             <div class="mb-3">
               <label class="form-label">Descripcion</label>
-              <input [(ngModel)]="addCarrera.descripcion" type="text" class="form-control" placeholder="" required>
+              <input [(ngModel)]="addCarrera.descripcion"  [ngModelOptions]="{standalone: true}" type="text" style="border:1px solid #000" class="form-control" placeholder="" required>
             </div>
             <div class="mb-3">
               <label class="form-label">Duracion</label>
-              <input [(ngModel)]="addCarrera.duracion" type="text" class="form-control" placeholder="" required>
+              <input [(ngModel)]="addCarrera.duracion"  [ngModelOptions]="{standalone: true}" style="border:1px solid #000" class="form-control" placeholder="" required>
             </div>
             <button class="btn btn-primary" (click)="postDatos()" type="submit">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
