@@ -1,7 +1,7 @@
 import { Materia } from "./materia";
 
 export class Carrera {
-  id?: number;
+  id?: number | null ;
   descripcion: string = '';
   duracion?: number;
   fecha_creacion?: Date;
@@ -10,4 +10,5 @@ export class Carrera {
   modificacion_usuario_id?: number;
   materia?: Materia[];
 }
+
 
