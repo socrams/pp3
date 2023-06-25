@@ -1,0 +1,22 @@
+/* .mas {
+  width: 40px;
+  height: 40px;
+  background-color: #000000;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+} */
+
+.botones{
+  width: 40px;
+  height: 40px;
+  background-color: #000000;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #fff;
+}

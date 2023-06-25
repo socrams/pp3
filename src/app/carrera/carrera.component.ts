@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class CarreraComponent {
   carreras: Carrera[];
   addCarrera : Carrera;
+  mostrar:boolean = false;
   constructor(public apiService:ApiService, public route:Router, ) {
     this.carreras = [];
     this.addCarrera = new Carrera();
@@ -28,23 +29,25 @@ export class CarreraComponent {
   }
 
   editarCarrera(id?: number | null){
+    this.mostrar = true;
     this.apiService.callURL<Carrera>('GET', 'carrera/' + id, null).subscribe(
       response => { this.addCarrera = response;
         console.log(this.addCarrera) }
     )
   }
+agregarCarrera(){
+  this.addCarrera.id = undefined
+  this.mostrar = !this.mostrar;
+}
 
   postDatos(){
-    //console.log("carrera1", this.addCarrera)
     if (this.addCarrera.id === undefined) {
       this.apiService.callURL('POST', 'carrera', this.addCarrera).subscribe(
         response => {
-
           console.log('respuesta: ', response);
           this.ngOnInit()
         });
       } else {
-
       this.apiService.callURL('PUT', 'carrera', this.addCarrera).subscribe(
         response => {
           console.log('respuesta: ', response);
@@ -52,5 +55,13 @@ export class CarreraComponent {
         });
     }
   }
+
+  borrar(id?: number | null ) {
+      this.apiService.callURL<Carrera[]>('DELETE', 'carrera/'+id)
+      .subscribe((data) => {
+        console.log(data);
+        this.ngOnInit();
+      });
+    }
 }
 

@@ -5,63 +5,63 @@
       <table class="table">
         <thead>
           <tr>
-            <!-- <th scope="col">ID</th> -->
             <th scope="col">Description</th>
             <th scope="col">Duration</th>
-            <!-- <th scope="col">Fecha</th> -->
-            <!-- <th scope="col">CreacionUsuarioID</th>
-          <th scope="col">UsuarioModifico</th> -->
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let carrera of carreras">
-            <!-- <th>{{carrera.id}}</th> -->
-            <th>{{carrera.descripcion}}</th>
-            <th>{{carrera.duracion}}</th>
-            <!-- <th>{{carrera.fecha_creacion}}</th> -->
-            <!-- <th>{{carrera.fecha_modificion}}</th>
-          <th>{{carrera.modificacion_usuario_id}}</th> -->
-            <th>
-              <button (click)="editarCarrera(carrera.id)" class="btn btn-danger btn-rounded btn-gradient">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="#000000"
-                  d="M20.598,3.402c-1.314-1.314-3.463-1.314-4.778,0l-10.98,10.98c-0.183,0.183-0.334,0.395-0.454,0.625l-2.437,7.315c-0.197,0.591,0.003,1.225,0.497,1.721c0.496,0.496,1.13,0.696,1.72,0.498l7.314-2.437c0.23-0.121,0.441-0.272,0.625-0.455l10.98-10.98c1.314-1.314,1.314-3.463,0-4.778M5.799,19.201l1.374-4.121l2.747,2.747L8.547,22.948L1.051,22.948l0-7.496L5.799,19.201z M19.416,5.584c0.358,0.358,0.622,0.754,0.764,1.173c0.143,0.42,0.157,0.865,0.043,1.293c-0.114,0.428-0.361,0.814-0.731,1.184l-2.268-2.268c0.37-0.37,0.756-0.617,1.184-0.731c0.428-0.114,0.873-0.1,1.293,0.043c0.419,0.142,0.815,0.406,1.173,0.764L19.416,5.584z">
-                </path>
-              </svg>
-
-            </button>
-            <!-- <button (click)="deleteUser(user.id)" class="btn btn-primary btn-rounded btn-gradient">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="#000000"
-                  d="M10.586,12L15,16.414L13.586,18L9.171,13.586L10.586,12z M17,4H14V3c0-1.654-1.346-3-3-3H9C7.346,0,6,1.346,6,3v1H3C1.346,4,0,5.346,0,7v1c0,1.654,1.346,3,3,3h1v8c0,1.654,1.346,3,3,3h8c1.654,0,3-1.346,3-3V10h1c1.654,0,3-1.346,3-3V7C20,5.346,18.654,4,17,4z M6,3c0-0.551,0.449-1,1-1h2c0.551,0,1,0.449,1,1v1H6V3z M18,10V7c0-0.551-0.449-1-1-1h-2c-0.551,0-1,0.449-1,1v3c0,0.551,0.449,1,1,1h2c0.551,0,1-0.449,1-1z">
-                </path>
-              </svg>
-            </button> -->
-            </th>
-
+            <td>{{carrera.descripcion}}</td>
+            <td>{{carrera.duracion}}</td>
+            <td>
+              <button (click)="editarCarrera(carrera.id)" class="btn btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M19.71 5.04a3.973 3.973 0 0 0-5.65 0L2 17.25V22h4.75L19.71 9.71a3.973 3.973 0 0 0 0-5.67zm-1.42 4.25L8.54 19H6v-2.54L17.29 8.29a2.007 2.007 0 0 1 2.83 2.83z" />
+                </svg>
+              </button>
+              <button (click)="borrar(carrera.id)" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path d="M19 6h-4L11.5 4h-3L5 6H1v2h18V6zm-3 2H4V20h12V8z" />
+                </svg>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
+      <button class="btn btn-success" (click)="agregarCarrera()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="#fff" d="M20 11H13V4h-2v7H4v2h7v7h2v-7h7z" />
+        </svg>
+        Agregar Carrera
+      </button>
 
-
-      <div class="row g-5">
-        <div class="col-md-5 col-lg-4 order-md-last">
-        </div>
-        <div class="col-md-7 col-lg-8">
-          <h4 class="mb-3">Carga Carreras </h4>
+      <div class="card mt-4" *ngIf="mostrar">
+        <div class="card-body">
+          <h4 class="card-title">Carga Carreras</h4>
           <form class="p-5 needs-validation" novalidate>
-            <div class="row g-3">
-              <div class="col-sm-6">
-                <label lass="form-label">Descripcion</label>
-                <input [(ngModel)]="this.addCarrera.descripcion"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="" value="" required>
-              </div>
+            <div class="mb-3">
+              <label class="form-label">Descripcion</label>
+              <input [(ngModel)]="addCarrera.descripcion" type="text" class="form-control" placeholder="" required>
             </div>
-            <div class="row g-3">
-              <div class="col-sm-6">
-                <label lass="form-label">Duracion</label>
-                <input [(ngModel)]="this.addCarrera.duracion"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="" value="" required>
-              </div>
+            <div class="mb-3">
+              <label class="form-label">Duracion</label>
+              <input [(ngModel)]="addCarrera.duracion" type="text" class="form-control" placeholder="" required>
             </div>
-            <button class="mb-100 w-100 btn btn-primary btn-lg" type="submit" (click)="postDatos()">Guardar</button>
-
+            <button class="btn btn-primary" (click)="postDatos()" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M19.71 5.04a3.973 3.973 0 0 0-5.65 0L2 17.25V22h4.75L19.71 9.71a3.973 3.973 0 0 0 0-5.67zm-1.42 4.25L8.54 19H6v-2.54L17.29 8.29a2.007 2.007 0 0 1 2.83 2.83z" />
+              </svg>
+              Guardar
+            </button>
           </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
