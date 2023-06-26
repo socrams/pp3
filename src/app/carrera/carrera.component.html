@@ -17,7 +17,7 @@
             <td>{{carrera.duracion}}</td>
 
             <td>
-              <button (click)="verMaterias(carrera.id)" class="btn btn-info">
+              <button (click)="verMaterias(carrera.id, carrera.descripcion)" class="btn btn-info">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
                   <path d="M12 2L2 7l10 5 10-5v9a4.978 4.978 0 0 1-2 3.993V20h3v2H1v-2h3v-1.007A4.978 4.978 0 0 1 2 14V5l10 5 10-5 1 1v10h2V6L12 11 1 6z" />
                 </svg>
@@ -71,7 +71,6 @@
           </form>
         </div>
       </div>
-
       <div class="card mt-4" *ngIf="mostrarMaterias">
       <table class="table">
         <thead>
@@ -102,27 +101,15 @@
           </tr>
         </tbody>
       </table>
-      <!-- <form class="p-5 needs-validation" novalidate>
-        <div class="mb-3">
-          <label class="form-label">Año</label>
-          <input [(ngModel)]="addMateria.anio"  [ngModelOptions]="{standalone: true}" type="text" style="border:1px solid #000" class="form-control" placeholder="" required>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Materia</label>
-          <input [(ngModel)]="addMateria.descripcion"  [ngModelOptions]="{standalone: true}" style="border:1px solid #000" class="form-control" placeholder="" required>
-        </div>
-        <button class="btn btn-primary" (click)="agregarMateria()" type="submit">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path
-              d="M19.71 5.04a3.973 3.973 0 0 0-5.65 0L2 17.25V22h4.75L19.71 9.71a3.973 3.973 0 0 0 0-5.67zm-1.42 4.25L8.54 19H6v-2.54L17.29 8.29a2.007 2.007 0 0 1 2.83 2.83z" />
-          </svg>
-          Guardar
-        </button>
-      </form> -->
-      <div class="card mt-4">
+      <button class="btn btn-success" (click)="botonAgregarMaterias()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="#fff" d="M20 11H13V4h-2v7H4v2h7v7h2v-7h7z" />
+        </svg>
+        Agregar Materias
+      </button>
+      <div class="card mt-4" *ngIf="mostrarAgregarMaterias">
       <div class="card-body">
-        <h4 class="card-title">Carga Materias</h4>
+        <h4 class="card-title">Carga Materias de: {{this.nombreCarrera}} </h4>
         <form class="p-5 needs-validation" novalidate>
           <div class="mb-3">
             <label class="form-label">Año</label>
@@ -138,7 +125,7 @@
               <path
                 d="M19.71 5.04a3.973 3.973 0 0 0-5.65 0L2 17.25V22h4.75L19.71 9.71a3.973 3.973 0 0 0 0-5.67zm-1.42 4.25L8.54 19H6v-2.54L17.29 8.29a2.007 2.007 0 0 1 2.83 2.83z" />
             </svg>
-            Guardar
+            Guardar Materia
           </button>
         </form>
       </div>

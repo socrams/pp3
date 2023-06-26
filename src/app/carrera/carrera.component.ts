@@ -15,8 +15,10 @@ export class CarreraComponent {
   addCarrera : Carrera;
   addMateria : Materia;
   idCarrera? : number | null;
+  nombreCarrera?: string;
   mostrar:boolean = false;
   mostrarMaterias:boolean = false;
+  mostrarAgregarMaterias:boolean = false;
   constructor(public apiService:ApiService, public route:Router, ) {
     this.carreras = [];
     this.materias = [];
@@ -44,6 +46,9 @@ export class CarreraComponent {
     )
   }
 agregarCarrera(){
+  this.mostrarAgregarMaterias = !this.mostrarAgregarMaterias;
+}
+botonAgregarMaterias(){
   this.addCarrera.id === undefined
   this.mostrar = !this.mostrar;
 }
@@ -78,8 +83,10 @@ agregarCarrera(){
       });
     }
 
-    verMaterias(id?: number | null){
+    verMaterias(id?: number | null, carrera?: string){
+      this.mostrar = false;
       this.idCarrera = id;
+      this.nombreCarrera= carrera;
       this.apiService.callURL<Materia[]>('GET', 'carrera/'+id+'/materias/', null)
       .subscribe((data) => {
         this.mostrarMaterias = true;
@@ -100,6 +107,7 @@ agregarCarrera(){
         this.apiService.callURL('POST', 'carrera/'+ this.idCarrera +'/materias/', this.addMateria).subscribe(
           response => {
             alert(JSON.stringify(response));
+            this.verMaterias(this.idCarrera)
           });
       } else {
         this.apiService.callURL('PUT', 'carrera/'+ this.idCarrera +'/materias/', this.addMateria).subscribe(
@@ -107,15 +115,14 @@ agregarCarrera(){
             alert(JSON.stringify(response));
           });
       }
-      this.verMaterias()
+      this.verMaterias(this.idCarrera)
     }
     borrarMateria(id?: number | null ) {
       this.apiService.callURL<Materia[]>('DELETE', 'carrera/'+ id +'/materias/'+ id,)
       .subscribe((data) => {
         console.log(data);
-        this.verMaterias();
       });
-      this.verMaterias();
+      this.verMaterias(this.idCarrera);
     }
 
     editarMateria(id?: number | null){
