@@ -42,35 +42,39 @@ export class CarreraComponent {
     this.mostrar = true;
     this.apiService.callURL<Carrera>('GET', 'carrera/' + id, null).subscribe(
       response => { this.addCarrera = response;
-        alert(JSON.stringify(response)); }
-    )
+      //  alert(JSON.stringify(response));
+      }
+      )
+    this.mostrarMaterias=false;
+
   }
 agregarCarrera(){
-  this.mostrarAgregarMaterias = !this.mostrarAgregarMaterias;
+  this.mostrar= !this.mostrar;
 }
 botonAgregarMaterias(){
   this.addCarrera.id === undefined
-  this.mostrar = !this.mostrar;
+  this.mostrarAgregarMaterias = !this.mostrarAgregarMaterias;
 }
 
   postDatos(){
     if (this.addCarrera.id === undefined) {
-//      console.log("ps:", this.addCarrera);
-
       this.apiService.callURL('POST', 'carrera', this.addCarrera).subscribe(
         response => {
-          alert(JSON.stringify(response));
+         // alert(JSON.stringify(response));
           this.mostrar = !this.mostrar;
           this.ngOnInit()
         });
       } else {
       this.apiService.callURL('PUT', 'carrera', this.addCarrera).subscribe(
         response => {
-          alert(JSON.stringify(response));
           this.mostrar = !this.mostrar;
           this.ngOnInit()
         });
     }
+    this.addCarrera.descripcion= "";
+    this.addCarrera.duracion=undefined;
+    this.mostrar=false;
+    this.mostrarMaterias=false;
   }
 
   borrarCarrera(id?: number | null ) {
@@ -89,13 +93,14 @@ botonAgregarMaterias(){
       this.nombreCarrera= carrera;
       this.apiService.callURL<Materia[]>('GET', 'carrera/'+id+'/materias/', null)
       .subscribe((data) => {
-        this.mostrarMaterias = true;
         this.materias = data;
         console.log(data);
-    }, error => {
-      console.log("error")
-    });
-    this.idCarrera = id
+      }, error => {
+        console.log("error")
+      });
+
+      this.mostrarMaterias = true
+      this.idCarrera = id
     }
 
     agregarMateria(){
@@ -106,30 +111,36 @@ botonAgregarMaterias(){
       if  (this.addMateria.id == null) {
         this.apiService.callURL('POST', 'carrera/'+ this.idCarrera +'/materias/', this.addMateria).subscribe(
           response => {
-            alert(JSON.stringify(response));
+           // alert(JSON.stringify(response));
             this.verMaterias(this.idCarrera)
           });
       } else {
         this.apiService.callURL('PUT', 'carrera/'+ this.idCarrera +'/materias/', this.addMateria).subscribe(
           response => {
-            alert(JSON.stringify(response));
+            //alert(JSON.stringify(response));
           });
       }
       this.verMaterias(this.idCarrera)
+      this.addMateria.anio=undefined;
+      this.addMateria.descripcion="";
     }
     borrarMateria(id?: number | null ) {
-      this.apiService.callURL<Materia[]>('DELETE', 'carrera/'+ id +'/materias/'+ id,)
+      this.apiService.callURL<Materia[]>('DELETE', 'carrera/'+ this.idCarrera +'/materias/'+ id,)
       .subscribe((data) => {
         console.log(data);
       });
       this.verMaterias(this.idCarrera);
+      this.addMateria.anio=undefined;
+      this.addMateria.descripcion="";
     }
 
     editarMateria(id?: number | null){
+      this.mostrarAgregarMaterias=true;
     this.apiService.callURL<Materia>('GET', 'carrera/' + this.idCarrera +'/materias/'+ id, null).subscribe(
       response => { this.addMateria = response;
       console.log("mateteria: ",Materia);
-      alert(JSON.stringify(response)); }
+      //alert(JSON.stringify(response));
+      }
       )
     }
   }

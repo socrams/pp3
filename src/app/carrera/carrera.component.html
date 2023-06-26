@@ -112,12 +112,12 @@
         <h4 class="card-title">Carga Materias de: {{this.nombreCarrera}} </h4>
         <form class="p-5 needs-validation" novalidate>
           <div class="mb-3">
-            <label class="form-label">Año</label>
-            <input [(ngModel)]="addMateria.anio"  [ngModelOptions]="{standalone: true}" type="text" style="border:1px solid #000" class="form-control" placeholder="" required>
-          </div>
-          <div class="mb-3">
             <label class="form-label">Materia</label>
             <input [(ngModel)]="addMateria.descripcion"  [ngModelOptions]="{standalone: true}" style="border:1px solid #000" class="form-control" placeholder="" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Año</label>
+            <input [(ngModel)]="addMateria.anio"  [ngModelOptions]="{standalone: true}" type="text" style="border:1px solid #000" class="form-control" placeholder="" required>
           </div>
           <button class="btn btn-primary" (click)="agregarMateria()" type="submit">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24px" height="24px">
