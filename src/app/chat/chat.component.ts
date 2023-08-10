@@ -64,6 +64,11 @@ export class ChatComponent {
       messageListEl.scrollTop = messageListEl.scrollHeight;
     }, 300);
   }
+
+  selectOption(text: any){
+    this.msj+=text;
+    this.getData()
+  }
 }
 
 
