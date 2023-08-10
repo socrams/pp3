@@ -66,7 +66,7 @@ export class ChatComponent {
   }
 
   selectOption(text: any){
-    this.msj+=text;
+    this.msj=text;
     this.getData()
   }
 }
