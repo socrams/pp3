@@ -1,10 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild,ElementRef } from '@angular/core';
 
-export class formaMensaje {
-  hora: string = "";
-  id: string = "";
-  respuesta: string = "";
+// export class formaMensaje {
+//   hora: string = "";
+//   id: string = "";
+//   respuesta?: string = "";
+// }
+
+export interface test {
+  hora:      string;
+  id:        string;
+  respuesta: Respuesta;
+}
+interface Respuesta {
+  answer?:       string;
+  id?:           number;
+  moreOptions?:  boolean;
+  moreQuestion?: boolean;
+  options?:      string;
+  response?:     string;
 }
 
 
@@ -15,41 +29,38 @@ export class formaMensaje {
 })
 export class ChatComponent {
   @ViewChild('listamsj') private listamsj?: ElementRef;
-  title = 'chat';
   url: string = 'http://localhost:5000/chat/';
-  todosLosMensajes: formaMensaje[]=[];
-  msj:any;
+  todosLosMensajes: test[]=[];
+  msj:string = "";
   side: boolean = true;
-  test:string = "Hola \n como stas";
 
-  /**
-   *
-   */
-  constructor( private http: HttpClient ) {
-
-    }
+  constructor( private http: HttpClient ) {}
 
   getHora(){
     let fechaActual = new Date();
     return (fechaActual.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}))
   }
 
-  getMiMensaje(): formaMensaje {
-    const mensaje = new formaMensaje();
-    mensaje.hora= this.getHora();
-    mensaje.id = "user";
-    mensaje.respuesta = this.msj;
+  getMiMensaje(): test {
+    const mensaje: test = {
+      hora: this.getHora(),
+      id: 'user',
+      respuesta: {
+        answer: this.msj
+      }
+    };
     return mensaje;
   }
 
   getData(){
     this.todosLosMensajes.push(this.getMiMensaje())
-    this.http.get<formaMensaje>(this.url + this.msj)
-    .subscribe((data ) => {
+    this.http.get<test>(this.url + this.msj)
+    .subscribe((data: test ) => {
       // data.respuesta = data.respuesta.replace(/\n/g, "\n");
-      console.log(data.respuesta);
+      console.log(data);
       this.todosLosMensajes.push(data);
     });
+
     this.msj = "";
     this.scrollToBottomOnInit()
   }

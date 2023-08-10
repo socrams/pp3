@@ -6,7 +6,7 @@
       <div class="card-body msj-container h-100" #listamsj>
         <div>
           <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes" [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
-            {{mensaje.respuesta}}
+            {{mensaje.respuesta.response}}
             <span class="time">
               {{mensaje.hora}}
             </span>
@@ -15,7 +15,7 @@
       </div>
       <form class="card-footer text-muted input-group" (ngSubmit)="getData()">
         <div>
-
+          
         </div>
         <input class="form-control" type="text" [(ngModel)]="msj" [ngModelOptions]="{standalone: true}"
           placeholder="ingresar mensaje">
