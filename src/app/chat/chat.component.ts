@@ -1,12 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild,ElementRef } from '@angular/core';
 
-// export class formaMensaje {
-//   hora: string = "";
-//   id: string = "";
-//   respuesta?: string = "";
-// }
-
 export interface test {
   hora:      string;
   id:        string;
@@ -33,6 +27,7 @@ export class ChatComponent {
   todosLosMensajes: test[]=[];
   msj:string = "";
   side: boolean = true;
+  options: String[] = [];
 
   constructor( private http: HttpClient ) {}
 
@@ -46,7 +41,7 @@ export class ChatComponent {
       hora: this.getHora(),
       id: 'user',
       respuesta: {
-        answer: this.msj
+        response: this.msj
       }
     };
     return mensaje;
@@ -56,13 +51,11 @@ export class ChatComponent {
     this.todosLosMensajes.push(this.getMiMensaje())
     this.http.get<test>(this.url + this.msj)
     .subscribe((data: test ) => {
-      // data.respuesta = data.respuesta.replace(/\n/g, "\n");
-      console.log(data);
+      this.options = data.respuesta.options?.split(", ")||[];
       this.todosLosMensajes.push(data);
     });
-
     this.msj = "";
-    this.scrollToBottomOnInit()
+    this.scrollToBottomOnInit()    
   }
 
   scrollToBottomOnInit() {

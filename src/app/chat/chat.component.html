@@ -5,7 +5,13 @@
       </div>
       <div class="card-body msj-container h-100" #listamsj>
         <div>
-          <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes" [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
+          <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes" [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">            
+            <ng-container *ngIf="mensaje.respuesta.options;">
+              <div *ngFor="let options of this.options">
+                <button>{{options}}</button>
+              </div>
+            </ng-container>
+            <button>ODIAR A ADRIAN</button>
             {{mensaje.respuesta.response}}
             <span class="time">
               {{mensaje.hora}}
