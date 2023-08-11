@@ -8,6 +8,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CarreraComponent } from './carrera/carrera.component';
+import { ResponseComponent } from './response/response.component';
 
 const routes: Routes = [
   {path:'', component:WelcomeComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:'userlist', component:RegisterComponent},
   {path:'nav', component:NavbarComponent},
   {path:'logout', component: LogoutComponent},
-  {path:'carrera', component: CarreraComponent}
+  {path:'carrera', component: CarreraComponent},
+  {path:'response', component: ResponseComponent},
 
 ];
 

@@ -3,12 +3,12 @@ export interface Mensaje {
     id:        string;
     respuesta: Respuesta;
   }
-  interface Respuesta {
+  export interface Respuesta {
     answer?:       string;
     id?:           number;
     moreOptions?:  boolean;
     moreQuestion?: boolean;
     options?:      string;
-    response?:     string;
+    response:     string;
   }
   

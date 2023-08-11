@@ -13,9 +13,11 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CarreraComponent } from './carrera/carrera.component';
+import { ResponseComponent } from './response/response.component';
 
 @NgModule({
   declarations: [
+    ResponseComponent,
     AppComponent,
     LoginComponent,
     ChatComponent,
@@ -24,7 +26,8 @@ import { CarreraComponent } from './carrera/carrera.component';
     RegisterComponent,
     NavbarComponent,
     LogoutComponent,
-    CarreraComponent
+    CarreraComponent,
+    ResponseComponent
   ],
   imports: [
     BrowserModule,
