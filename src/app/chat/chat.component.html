@@ -5,15 +5,14 @@
       </div>
       <div class="card-body msj-container h-100" #listamsj>
         <div>
-          <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes" [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">            
+          <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes" [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
+            {{mensaje.respuesta.response}}
             <ng-container *ngIf="mensaje.respuesta.options;">
               <div *ngFor="let options of this.options">
               
-                <button (click)="selectOption(options)"> {{options}} </button>
+                <button class="opciones" (click)="selectOption(options)"> {{options}} </button>
               </div>
-              <button>ODIAR A ADRIAN</button>
             </ng-container>
-            {{mensaje.respuesta.response}}
             <span class="time">
               {{mensaje.hora}}
             </span>

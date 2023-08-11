@@ -1,21 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild,ElementRef } from '@angular/core';
-
-export interface test {
-  hora:      string;
-  id:        string;
-  respuesta: Respuesta;
-}
-interface Respuesta {
-  answer?:       string;
-  id?:           number;
-  moreOptions?:  boolean;
-  moreQuestion?: boolean;
-  options?:      string;
-  response?:     string;
-}
-
-
+import { Mensaje } from '../modelo/mensaje';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -24,7 +9,7 @@ interface Respuesta {
 export class ChatComponent {
   @ViewChild('listamsj') private listamsj?: ElementRef;
   url: string = 'http://localhost:5000/chat/';
-  todosLosMensajes: test[]=[];
+  todosLosMensajes: Mensaje[]=[];
   msj:string = "";
   side: boolean = true;
   options: String[] = [];
@@ -36,8 +21,8 @@ export class ChatComponent {
     return (fechaActual.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}))
   }
 
-  getMiMensaje(): test {
-    const mensaje: test = {
+  getMiMensaje(): Mensaje {
+    const mensaje: Mensaje = {
       hora: this.getHora(),
       id: 'user',
       respuesta: {
@@ -49,8 +34,8 @@ export class ChatComponent {
 
   getData(){
     this.todosLosMensajes.push(this.getMiMensaje())
-    this.http.get<test>(this.url + this.msj)
-    .subscribe((data: test ) => {
+    this.http.get<Mensaje>(this.url + this.msj)
+    .subscribe((data: Mensaje ) => {
       this.options = data.respuesta.options?.split(", ")||[];
       this.todosLosMensajes.push(data);
     });
