@@ -3,11 +3,11 @@
     <form class="form-container">
         
         <label for="id">ID</label>
-        <!-- <select>
-            <option [value]="opcion" *ngFor="let opcion of this.respuesta[0].id">
+         <select>
+            <option [value]="opcion" *ngFor="let opcion of this.respuestas">
                 {{opcion}}
             </option>
-        </select> -->
+        </select>
         <input type="text"  disabled>
         <label for="pregunta">¿Pregunta?</label>
         <input type="text" [(ngModel)]="respuesta.answer" [ngModelOptions]="{standalone: true}">
