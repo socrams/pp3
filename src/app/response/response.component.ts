@@ -8,6 +8,7 @@ export class ResponseComponent implements OnInit {
     respuestas : Respuesta[] = [];
     respuesta: Respuesta;
     url : string = 'http://localhost:5000/response/';
+    opcionSeleccionadaValue : any = '' ; 
 
     constructor(private http : HttpClient) { 
       this.respuesta = {id: 0, answer: '', response: '', moreOptions: false, moreQuestion: false, options: '' }
@@ -32,4 +33,8 @@ export class ResponseComponent implements OnInit {
         this.getResponses()
 
     }
-}
+    opcionSeleccionada(value: any) {
+      this.opcionSeleccionadaValue = value;
+    }
+    
+  }
