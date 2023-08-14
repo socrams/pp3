@@ -6,8 +6,8 @@
       <div class="card-body msj-container h-100" #listamsj>
         <div>
           <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes" [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
-            {{mensaje.respuesta.response}}
-            <ng-container *ngIf="mensaje.respuesta.options;">
+            {{mensaje.respuesta?.response}}
+            <ng-container *ngIf="mensaje.respuesta?.options;">
               <div *ngFor="let options of this.options">
               
                 <button class="opciones" (click)="selectOption(options)"> {{options}} </button>

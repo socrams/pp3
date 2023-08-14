@@ -10,16 +10,16 @@
         </select> -->
         <input type="text"  disabled>
         <label for="pregunta">¿Pregunta?</label>
-        <input type="text" >
+        <input type="text" [(ngModel)]="respuesta.answer" [ngModelOptions]="{standalone: true}">
 
         <label for="response">Respuesta</label>
-        <input type="text" >
+        <input type="text" [(ngModel)]="respuesta.response" [ngModelOptions]="{standalone: true}">
 
         <label for="options">Opciones</label>
-        <input type="text" >
+        <input type="text" [(ngModel)]="respuesta.options"  [ngModelOptions]="{standalone: true}">
 
         <label for="myCheckbox">¿Tiene mas opciones?</label>
-        <input type="checkbox" >
-        <button (click)="getResponses()" class="d-block">Obtener Responses</button>
+        <input type="checkbox" [(ngModel)]="respuesta.moreOptions" [ngModelOptions]="{standalone: true}">
+        <button (click)="loadDataById()" class="d-block">Obtener Responses</button>
     </form>
 </body>

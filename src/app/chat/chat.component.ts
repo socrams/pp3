@@ -36,7 +36,7 @@ export class ChatComponent {
     this.todosLosMensajes.push(this.getMiMensaje())
     this.http.get<Mensaje>(this.url + this.msj)
     .subscribe((data: Mensaje ) => {
-      this.options = data.respuesta.options?.split(", ")||[];
+      this.options = data.respuesta?.options?.split(", ")||[];
       this.todosLosMensajes.push(data);
     });
     this.msj = "";
