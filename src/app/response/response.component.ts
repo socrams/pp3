@@ -16,13 +16,16 @@ constructor(private http: HttpClient) {
 
 getResponses(){
   this.http.get<Respuesta>(this.url)
-    .subscribe((data: Respuesta) => {
-      this.respuesta.push(data);
+    .subscribe((data: any) => {
+      this.respuesta = data;
       //quiero obtener con esto todas las respuestas solamente. y me da undefined.
-      console.log("respuesta:", this.respuesta[0]);
+      console.log("respuesta:", this.respuesta[1]);
     });
-    
 }
+
+
+
+
 ngOnInit(): void {
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
   //Add 'implements OnInit' to the class.
