@@ -1,7 +1,13 @@
 
 <body>
     <form class="form-container">
+        
         <label for="id">ID</label>
+        <!-- <select>
+            <option [value]="opcion" *ngFor="let opcion of this.respuesta[0].id">
+                {{opcion}}
+            </option>
+        </select> -->
         <input type="text"  disabled>
         <label for="pregunta">¿Pregunta?</label>
         <input type="text" >
@@ -14,6 +20,6 @@
 
         <label for="myCheckbox">¿Tiene mas opciones?</label>
         <input type="checkbox" >
-        <button class="d-block">Obtener Responses</button>
+        <button (click)="getResponses()" class="d-block">Obtener Responses</button>
     </form>
 </body>
