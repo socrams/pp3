@@ -5,7 +5,7 @@
         <label for="id">ID</label>
          <select>
             <option [value]="opcion" *ngFor="let opcion of this.respuestas">
-                {{opcion}}
+                {{opcion.id}} - {{opcion.answer}}
             </option>
         </select>
         <input type="text"  disabled>
