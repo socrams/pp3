@@ -13,6 +13,7 @@ export class ChatComponent {
   msj:string = "";
   side: boolean = true;
   options: String[] = [];
+  mostrarChat : boolean = true;
 
   constructor( private http: HttpClient ) {}
 
