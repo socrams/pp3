@@ -14,9 +14,8 @@
         [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
         {{mensaje.respuesta?.response}}
         <ng-container *ngIf="mensaje.respuesta?.options;">
-          <div *ngFor="let options of this.options">
-
-            <button class="opciones" (click)="selectOption(options)"> {{options}} </button>
+          <div *ngFor="let option of mensaje.respuesta?.options?.split(', ')">
+            <button class="opciones" (click)="selectOption(option)"> {{option}} </button>
           </div>
         </ng-container>
         <span class="time">

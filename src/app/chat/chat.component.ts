@@ -12,7 +12,6 @@ export class ChatComponent {
   todosLosMensajes: Mensaje[]=[];
   msj:string = "";
   side: boolean = true;
-  options: String[] = [];
   mostrarChat : boolean = true;
 
   constructor( private http: HttpClient ) {}
@@ -37,11 +36,10 @@ export class ChatComponent {
     this.todosLosMensajes.push(this.getMiMensaje())
     this.http.get<Mensaje>(this.url + this.msj)
     .subscribe((data: Mensaje ) => {
-      this.options = data.respuesta?.options?.split(", ")||[];
       this.todosLosMensajes.push(data);
     });
     this.msj = "";
-    this.scrollToBottomOnInit()    
+    this.scrollToBottomOnInit()
   }
 
   scrollToBottomOnInit() {

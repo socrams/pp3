@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CarreraComponent } from './carrera/carrera.component';
 import { ResponseComponent } from './response/response.component';
+import { ContenedorMensajeComponent } from './contenedor-mensaje/contenedor-mensaje.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ResponseComponent } from './response/response.component';
     NavbarComponent,
     LogoutComponent,
     CarreraComponent,
-    ResponseComponent
+    ResponseComponent,
+    ContenedorMensajeComponent
   ],
   imports: [
     BrowserModule,
