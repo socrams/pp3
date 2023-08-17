@@ -6,15 +6,17 @@ import {HttpClient} from '@angular/common/http';
 
 export class ResponseComponent implements OnInit {
     respuestas : Respuesta[] = [];
-    respuesta: Respuesta;
-    url : string = 'http://localhost:5000/response/';
+    //respuesta: Respuesta;
+    url : string = 'http://localhost:5000/response';
     opcionSeleccionadaValue : number = 0;
     
     constructor(private http : HttpClient) { 
-      this.respuesta = {id: 0, answer: '', response: '', moreOptions: false, moreQuestion: false, options: '' }
+    //  this.respuesta = {id: 0, answer: '', response: '', moreOptions: false, moreQuestion: false, options: '' }
+    }
+    ngOnInit() { 
+      this.getResponses()
     }
 mostrarIndex(){
-  //mal los id de ls rstas.
   console.log('Rsta: ',this.respuestas[this.opcionSeleccionadaValue]);
   console.log(this.opcionSeleccionadaValue,'opcion seleccionada');
   console.log(this.respuestas);
@@ -26,23 +28,19 @@ mostrarIndex(){
             this.respuestas = data;
         });
     }
-    ngOnInit() { 
-      // Buscamos todas las prespuestas del server.
-      this.getResponses()
-    }
-    modificar() {
-      if (this.opcionSeleccionadaValue !== undefined && this.opcionSeleccionadaValue >= 0 && this.opcionSeleccionadaValue < this.respuestas.length) {
-        const selectedItem = this.respuestas[this.opcionSeleccionadaValue];
-        this.http.put<Respuesta>(this.url + selectedItem.id, selectedItem).subscribe(
-          data => {
-            console.log('Respuesta modificada con éxito', data);
-          },
-          error => {
-            console.error('Error al modificar la respuesta', error);
-          }
-        );
+modificar() {
+  // if (this.opcionSeleccionadaValue !== undefined && this.opcionSeleccionadaValue >= 0 && this.opcionSeleccionadaValue < this.respuestas.length) {
+  //   const selectedItem = this.respuestas[this.opcionSeleccionadaValue];
+    this.http.put<Respuesta>(this.url +'/'+ this.opcionSeleccionadaValue,this.respuestas[this.opcionSeleccionadaValue]).subscribe(
+      data => {
+        console.log('Respuesta modificada con éxito', data);
+      },
+      error => {
+        console.error('Error al modificar la respuesta', error);
       }
-    }
+    );
+  // }
+}
     // public loadDataById(index: number) {
     //   console.log(index);
       
