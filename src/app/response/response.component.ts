@@ -33,6 +33,8 @@ modificar() {
   //   const selectedItem = this.respuestas[this.opcionSeleccionadaValue];
     this.http.put<Respuesta>(this.url +'/'+ this.opcionSeleccionadaValue,this.respuestas[this.opcionSeleccionadaValue]).subscribe(
       data => {
+        console.log(this.respuestas[this.opcionSeleccionadaValue]);
+        
         console.log('Respuesta modificada con éxito', data);
       },
       error => {
