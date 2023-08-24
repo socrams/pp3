@@ -42,7 +42,7 @@ export class ApiService {
   }
 
   callURL<T>(method: string, url: string, body?: any): Observable<T> {
-     return new Observable<T>(observer => {
+    return new Observable<T>(observer => {
       let token = this.authService.getToken();
         this.callURLWithToken<T>(method, url, token, body).subscribe(
           response => {
@@ -54,7 +54,7 @@ export class ApiService {
             observer.complete();
           }
         );
-     });
+    });
   }
 
   validateToken(): any {
