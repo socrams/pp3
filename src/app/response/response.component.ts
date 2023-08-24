@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
 export class ResponseComponent implements OnInit {
     respuestas : Respuesta[] = [];
     //respuesta: Respuesta;
-    url : string = 'http://localhost:5000/response';
+    url : string = 'https://pp3-python.vercel.app/response';
     opcionSeleccionadaValue : number = 0;
     
     constructor(private http : HttpClient) { 

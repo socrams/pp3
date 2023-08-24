@@ -8,7 +8,7 @@ import { Mensaje } from '../modelo/mensaje';
 })
 export class ChatComponent {
   @ViewChild('listamsj') private listamsj?: ElementRef;
-  url: string = 'http://localhost:5000/chat/';
+  url: string = 'https://pp3-python.vercel.app/chat/';
   todosLosMensajes: Mensaje[]=[];
   msj:string = "";
   side: boolean = true;

@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 export class ApiService {
 
 
-  private url: string = 'http://127.0.0.1:5000/';
+  private url: string = 'https://pp3-python.vercel.app/';
 
   constructor(private http: HttpClient, private route: Router, private authService: AuthService) {
   }
