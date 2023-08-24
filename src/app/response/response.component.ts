@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { Respuesta } from '../modelo/respuesta';
 import {HttpClient} from '@angular/common/http';
+import { ApiService } from '../services/api.service';
+import { Route, Router } from '@angular/router';
 
 @Component({selector: 'app-response', templateUrl: './response.component.html', styleUrls: ['./response.component.css']})
 
@@ -10,7 +12,7 @@ export class ResponseComponent implements OnInit {
     url : string = 'https://pp3-python.vercel.app/response';
     opcionSeleccionadaValue : number = 0;
     
-    constructor(private http : HttpClient) { 
+    constructor(private http : HttpClient, private apiService : ApiService, private route : Router) { 
     //  this.respuesta = {id: 0, answer: '', response: '', moreOptions: false, moreQuestion: false, options: '' }
     }
     ngOnInit() { 
@@ -24,9 +26,12 @@ mostrarIndex(){
   
 }
     getResponses() {
-      this.http.get<Respuesta>(this.url).subscribe((data : any) => {
+      this.apiService.callURL<Respuesta>('GET', 'response/', null)
+            .subscribe((data : any) => {
             this.respuestas = data;
-        });
+        }, error => {
+          this.route.navigateByUrl("login");
+        })
     }
 modificar() {
   // if (this.opcionSeleccionadaValue !== undefined && this.opcionSeleccionadaValue >= 0 && this.opcionSeleccionadaValue < this.respuestas.length) {
