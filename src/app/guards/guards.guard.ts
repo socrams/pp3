@@ -21,10 +21,10 @@ export class GuardsGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this._guard.validateToken() ? true : false;
-    // }else{
-    //   this.router.navigate(['/login']);
-    //   return false;
-    // }
+      if (this._guard.validateToken()){
+        return true;
+      }else{
+        return this.router.navigate(['login']);
+      }
   }
 }
