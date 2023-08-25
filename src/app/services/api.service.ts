@@ -75,6 +75,15 @@ export class ApiService {
   //     });
   // }
 
+  validateToken(): any {
+    this.callURL<any>('POST', 'validateToken/', null).subscribe(
+      response => { 
+        response ? true : false;
+        console.log(response);
+      }
+    );
+  }
+
   private callURLWithToken<T>(
     method: string,
     url: string,

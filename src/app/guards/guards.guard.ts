@@ -21,8 +21,7 @@ export class GuardsGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // if ((let x=1) == 1)){
-    return true;
+    return this._guard.validateToken() ? true : false;
     // }else{
     //   this.router.navigate(['/login']);
     //   return false;
