@@ -4,80 +4,87 @@ import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-
-
   private url: string = 'https://pp3-python.vercel.app/';
 
-  constructor(private http: HttpClient, private route: Router, private authService: AuthService) {
-  }
-
+  constructor(
+    private http: HttpClient,
+    private route: Router,
+    private authService: AuthService
+  ) {}
 
   login(_mail: string, _password: string) {
     const credentials = {
       mail: _mail,
-      password: _password
+      password: _password,
     };
-    return new Observable<any>(observer => {
-      this.http.post<any>(this.url + 'login',
-      JSON.stringify(credentials),
-      {headers: {'Content-type': 'application/json'}}).subscribe(
-        response => {
-              if (response.message !== 'ERROR') {
-                this.authService.setToken(response.message);
-                observer.next(true);
-              } else {
-                this.authService.removeToken();
-                observer.next(false);
-              }
-              observer.complete();
-            }, error => {
+    return new Observable<any>((observer) => {
+      this.http
+        .post<any>(this.url + 'login', JSON.stringify(credentials), {
+          headers: { 'Content-type': 'application/json' },
+        })
+        .subscribe(
+          (response) => {
+            if (response.message !== 'ERROR') {
+              this.authService.setToken(response.message);
+              observer.next(true);
+            } else {
+              this.authService.removeToken();
               observer.next(false);
-              observer.complete();
-            })
-    });
-  }
-
-  callURL<T>(method: string, url: string, body?: any): Observable<T> {
-    return new Observable<T>(observer => {
-      let token = this.authService.getToken();
-        this.callURLWithToken<T>(method, url, token, body).subscribe(
-          response => {
-            observer.next(response);
+            }
             observer.complete();
           },
-          error => {
-            observer.error(error);
+          (error) => {
+            observer.next(false);
             observer.complete();
           }
         );
     });
   }
 
-  validateToken(): any {
-    this.callURL<any>('GET', 'validateToken/', null).subscribe(
-      response => {
-        if (response.message != 'token valido') {
-          return true;
-        } else {
-          return false;
+  callURL<T>(method: string, url: string, body?: any): Observable<T> {
+    return new Observable<T>((observer) => {
+      let token = this.authService.getToken();
+      this.callURLWithToken<T>(method, url, token, body).subscribe(
+        (response) => {
+          observer.next(response);
+          observer.complete();
+        },
+        (error) => {
+          observer.error(error);
+          observer.complete();
         }
-      },
-      error => {
-        return false;
-      });
+      );
+    });
   }
 
-  private callURLWithToken<T>(method: string, url: string, token: string, body?: any): Observable<T> {
+  // validateToken(): any {
+  //   this.callURL<any>('GET', 'validateToken/', null).subscribe(
+  //     response => {
+  //       if (response.message != 'token valido') {
+  //         return true;
+  //       } else {
+  //         return false;
+  //       }
+  //     },
+  //     error => {
+  //       return false;
+  //     });
+  // }
+
+  private callURLWithToken<T>(
+    method: string,
+    url: string,
+    token: string,
+    body?: any
+  ): Observable<T> {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', token);
     headers = headers.append('Content-type', 'application/json');
     let params = new HttpParams();
-
     if (method === 'GET' && body) {
       // Si el método es GET y hay un body, convertirlo en parámetros de la URL
       for (const key in body) {
@@ -106,7 +113,4 @@ export class ApiService {
         throw new Error(`Método HTTP no válido: ${method}`);
     }
   }
-
-
-
 }

@@ -9,13 +9,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LogoutComponent } from './logout/logout.component';
 // import { CarreraComponent } from './carrera/carrera.component';
 import { ResponseComponent } from './response/response.component';
+import { GuardsGuard } from './guards/guards.guard';
 
 const routes: Routes = [
   {path:'', component:WelcomeComponent},
   {path:'chat', component:ChatComponent},
   {path:'login', component:LoginComponent},
   {path:'user', component:UserComponent},
-  {path:'userlist', component:RegisterComponent},
+  {path:'userlist', component:RegisterComponent, canActivate: [GuardsGuard]},
   {path:'nav', component:NavbarComponent},
   {path:'logout', component: LogoutComponent},
   // {path:'carrera', component: CarreraComponent},
