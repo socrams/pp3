@@ -8,11 +8,16 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
 export class GuardsGuard implements CanActivate {
-  constructor(private _guard: ApiService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private apiService: ApiService,
+    private router: Router
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -21,10 +26,19 @@ export class GuardsGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      if (this._guard.validateToken()){
+    let token = this.authService.getToken();
+    if (!token) {
+      this.router.navigate(['/login']);
+      return false;
+    }
+    return this.apiService
+      .validateToken()
+      .then((res) => {
         return true;
-      }else{
-        return this.router.navigate(['login']);
-      }
+      })
+      .catch((err) => {
+        this.router.navigate(['/login']);
+        return false;
+      });
   }
 }

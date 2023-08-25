@@ -74,15 +74,26 @@ export class ApiService {
   //       return false;
   //     });
   // }
-
-  validateToken(): any {
-    this.callURL<any>('POST', 'validateToken/', null).subscribe(
-      response => { 
-        console.log(response);
-        return response ? true : false;
-      }
-    );
-  }
+  validateToken(): Promise<boolean> {
+    let token = this.authService.getToken();
+    return !token ?
+        new Promise<boolean>(resolve => {
+            resolve(false);
+            return false;
+        }) :
+        this.http.post(this.url + '/login', { 'token': token })
+            .toPromise()
+            .then((res) => {
+              console.log("token", res);
+                
+              localStorage.getItem(JSON.stringify(res));
+                return true;
+            }
+            ).catch((error) => {
+              
+                return false
+            });
+}
 
   private callURLWithToken<T>(
     method: string,

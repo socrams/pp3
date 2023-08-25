@@ -7,7 +7,6 @@ import { UserComponent } from './user/user.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoutComponent } from './logout/logout.component';
-// import { CarreraComponent } from './carrera/carrera.component';
 import { ResponseComponent } from './response/response.component';
 import { GuardsGuard } from './guards/guards.guard';
 
@@ -20,7 +19,7 @@ const routes: Routes = [
   {path:'nav', component:NavbarComponent},
   {path:'logout', component: LogoutComponent},
   // {path:'carrera', component: CarreraComponent},
-  {path:'response', component: ResponseComponent},
+  {path:'response', component: ResponseComponent, canActivate: [GuardsGuard]},
 
 ];
 
