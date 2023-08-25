@@ -12,7 +12,7 @@ export class ChatComponent {
   todosLosMensajes: Mensaje[]=[];
   msj:string = "";
   side: boolean = true;
-  mostrarChat : boolean = true;
+  mostrarChat : boolean = false;
 
   constructor( private http: HttpClient ) {}
 

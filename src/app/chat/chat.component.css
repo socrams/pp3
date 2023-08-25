@@ -1,8 +1,15 @@
 .cardContainer{
+  
   width: 500px;
   height: 500px;
   position: fixed;
   padding: 0.3rem;
+
+
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;   
+  display: flex !important;
   /* right: 0.5rem;
     bottom: 0.5rem; */
 }

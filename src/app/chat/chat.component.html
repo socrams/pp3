@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <div class="openIcon" *ngIf="mostrarChat==false" (click)="mostrarChat=true">
   <img src="https://cdn-icons-png.flaticon.com/512/61/61516.png" alt="Open-Bot" class="chatIcon">
 </div>
@@ -25,9 +23,6 @@
     </div>
   </div>
   <form class="card-footer text-muted input-group" (ngSubmit)="getData()" id="enviar">
-    <div>
-
-    </div>
     <input class="form-control" type="text" [(ngModel)]="msj" [ngModelOptions]="{standalone: true}"
       placeholder="Mensaje...">
     <div class="input-group-text" id="basic-addon2" (click)="getData()">
