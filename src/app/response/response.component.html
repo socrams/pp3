@@ -1,5 +1,4 @@
-<body>
-<div class="form-container">
+<div class="container">
         <select [(ngModel)]="opcionSeleccionadaValue">
             <option [value]='i' *ngFor="let item of this.respuestas  let i = index">
                 {{ item.answer }}
@@ -8,11 +7,10 @@
         <label for="text">¿Pregunta?</label>
         <input type="text" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].answer">
         <label for="response">Respuesta</label>
-        <input type="text" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].response">
+        <textarea rows="10" style="width: 100%;" [value]="this.respuestas[opcionSeleccionadaValue].response"></textarea>
         <label for="options">Opciones</label>
         <input type="text" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].options">
         <label for="myCheckbox">¿Tiene mas opciones?</label>
         <input type="checkbox" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].moreoptions">
         <button class="btn-group btn-group-toggle" (click)="modificar()">Guardar</button>
 </div>
-</body>
