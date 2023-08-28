@@ -51,9 +51,12 @@ export class ChatComponent {
 
   selectOption(text: any){
     this.msj=text;
+    console.log(this.msj.indexOf('http'));
     if (this.msj.indexOf('http') >= 0) {
+      console.log("redireccionando");
       window.open(`${this.msj}`, '_blank');
     }else{
+      console.log("no funco");
       this.getData();
     }
   }
