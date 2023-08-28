@@ -1,4 +1,8 @@
-.btn-floating.fixed-bottom {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .btn-floating.fixed-bottom {
   position: fixed;
   top: auto;
   bottom: 20px;
@@ -38,4 +42,4 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
+} */

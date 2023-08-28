@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Respuesta } from '../modelo/respuesta';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-response',
@@ -41,15 +41,11 @@ export class ResponseComponent implements OnInit {
     );
   }
   modificar() {
-    this.http
-      .put<Respuesta>(
-        this.url + '/' + this.opcionSeleccionadaValue,
-        this.respuestas[this.opcionSeleccionadaValue]
+    this.http.put<Respuesta>(this.url + '/' + this.opcionSeleccionadaValue,this.respuestas[this.opcionSeleccionadaValue]
       )
       .subscribe(
         (data) => {
           console.log(this.respuestas[this.opcionSeleccionadaValue]);
-
           console.log('Respuesta modificada con éxito', data);
         },
         (error) => {

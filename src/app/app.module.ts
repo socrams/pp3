@@ -15,6 +15,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { CarreraComponent } from './carrera/carrera.component';
 import { ResponseComponent } from './response/response.component';
 import { ContenedorMensajeComponent } from './contenedor-mensaje/contenedor-mensaje.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ContenedorMensajeComponent } from './contenedor-mensaje/contenedor-mens
     LogoutComponent,
     CarreraComponent,
     ResponseComponent,
-    ContenedorMensajeComponent
+    ContenedorMensajeComponent,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,

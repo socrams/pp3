@@ -1,8 +1,8 @@
 export class Respuesta {
     answer?:       string;
     id?:           number;
-    moreOptions?:  boolean;
-    moreQuestion?: boolean;
+    moreoptions?:  boolean;
+    morequestion?: boolean;
     options?:      string;
     response?:     string;
   }

@@ -1,7 +1,8 @@
+<div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">ID</th>
+      <!-- <th scope="col">ID</th> -->
       <th scope="col">Usuario</th>
       <th scope="col">Password</th>
       <th scope="col">Correo Electronico</th>
@@ -12,9 +13,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let user of users">
-      <th>{{user.id}}</th>
+      <!-- <th>{{user.id}}</th> -->
       <th>{{user.name}}</th>
-      <th>{{user.password}}</th>
+      <th>******</th>
       <th>{{user.email}}</th>
       <th>{{user.phone}}</th>
       <th>{{user.full_name}}</th>
@@ -40,3 +41,4 @@
     </tr>
   </tbody>
 </table>
+</div>

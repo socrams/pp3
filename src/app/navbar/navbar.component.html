@@ -1,39 +1,34 @@
-<nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">Chat-Bot</a>
-      <button class="navbar-toggler menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExample01">
-        <ul class="navbar-nav me-auto mb-2">
-          <li *ngIf="!isActive()" class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/login" >Login</a>
-          </li>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
+      <a class="navbar-brand jus" routerLink="/">
+        <img src='https://i.postimg.cc/hhLKQ3yg/robot.png' border='0' width="100%" alt='beltran-robot'/>
+      </a>
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ubicacion" id="navbarsExample10">
           <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/carrera">Carrera</a>
+            <a class="nav-link test" routerLink="/userManagement">manejousuarios</a>
           </li> -->
-          <li *ngIf="isActive()" class="nav-item">
-            <a class="nav-link" routerLink="/response">Respuestas</a>
-          </li>
-          <li class="nav-item">
-            <a *ngIf="isActive()" class="nav-link" routerLink="/userlist">User List</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/user">Sing Up</a>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/chat">Chat-bot</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/aboutme">Sobre mi</a>
-          </li> -->
-          <li *ngIf="isActive()" class="nav-item">
-            <a class="nav-link" routerLink="/logout">Logout</a>
-          </li>
-        </ul>
+          <ul class="navbar-nav">
+            <li *ngIf="!isActive()" class="nav-item">
+              <a class="nav-link" aria-current="page" routerLink="/login" >Login</a>
+            </li>
+            <li class="nav-item">
+              <a *ngIf="isActive()" class="nav-link" routerLink="/userlist">Administracion de Usuarios</a>
+            </li>
+            <li *ngIf="isActive()" class="nav-item">
+              <a class="nav-link" routerLink="/response">Administrar Preguntas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link test" routerLink="/chat">Chat-bot</a>
+            </li>
+            <li *ngIf="isActive()" class="nav-item">
+              <a class="nav-link" routerLink="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-
-
+    </nav>
+</div>

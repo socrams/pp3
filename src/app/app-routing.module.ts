@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ResponseComponent } from './response/response.component';
 import { GuardsGuard } from './guards/guards.guard';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 const routes: Routes = [
   {path:'', component:WelcomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'userlist', component:RegisterComponent, canActivate: [GuardsGuard]},
   {path:'nav', component:NavbarComponent},
   {path:'logout', component: LogoutComponent},
+  {path:'userManagement', component: UserManagementComponent},
   // {path:'carrera', component: CarreraComponent},
   {path:'response', component: ResponseComponent, canActivate: [GuardsGuard]},
 
