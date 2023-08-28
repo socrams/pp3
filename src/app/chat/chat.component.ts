@@ -51,7 +51,11 @@ export class ChatComponent {
 
   selectOption(text: any){
     this.msj=text;
-    this.getData()
+    if (this.msj.indexOf('http') >= 0) {
+      window.open(`${this.msj}`, '_blank');
+    }else{
+      this.getData();
+    }
   }
 }
 
