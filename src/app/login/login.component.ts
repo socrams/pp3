@@ -28,4 +28,10 @@ export class LoginComponent {
       }
     });
   }
+
+  handleEnter(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.onSubmit();
+    }
+  }
 }
