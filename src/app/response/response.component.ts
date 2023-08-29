@@ -12,7 +12,6 @@ import Tagify from '@yaireo/tagify';
 })
 export class ResponseComponent implements OnInit,AfterViewInit {
   respuestas: Respuesta[] = [];
-  //respuesta: Respuesta;
   url: string = 'https://pp3-python.vercel.app/response';
   opcionSeleccionadaValue: number = 0;
   keywords = [];
