@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import Tagify from '@yaireo/tagify';
+import { url } from '../modelo/config';
 
 @Component({
   selector: 'app-response',
@@ -12,7 +13,7 @@ import Tagify from '@yaireo/tagify';
 })
 export class ResponseComponent implements OnInit,AfterViewInit {
   respuestas: Respuesta[] = [];
-  url: string = 'https://pp3-python.vercel.app/response';
+  url = url + 'response' ;
   opcionSeleccionadaValue: number = 0;
   keywords = [];
   placeHolderString = 'Type and press Enter to add more than one keywords...';

@@ -3,16 +3,15 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
-
+import { url } from '../modelo/config';
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private url: string = 'https://pp3-python.vercel.app/';
+  private url = url;
 
   constructor(
     private http: HttpClient,
-    private route: Router,
     private authService: AuthService
   ) {}
 
@@ -81,7 +80,7 @@ export class ApiService {
             resolve(false);
             return false;
         }) :
-        this.http.post(this.url + '/login', { 'token': token })
+        this.http.post(this.url + 'login', { 'token': token })
             .toPromise()
             .then((res) => {
               console.log("token", res);

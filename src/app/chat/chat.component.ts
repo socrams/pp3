@@ -1,20 +1,26 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild,ElementRef } from '@angular/core';
+import { Component, ViewChild,ElementRef, AfterViewInit } from '@angular/core';
 import { Mensaje } from '../modelo/mensaje';
+import { url } from '../modelo/config';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent {
+export class ChatComponent implements AfterViewInit {
   @ViewChild('listamsj') private listamsj?: ElementRef;
-  url: string = 'https://pp3-python.vercel.app/chat/';
+  url= url + 'chat/';
   todosLosMensajes: Mensaje[]=[];
   msj:string = "";
   side: boolean = true;
   mostrarChat : boolean = false;
 
   constructor( private http: HttpClient ) {}
+
+
+  ngAfterViewInit(): void {
+    this.scrollToBottomOnInit();
+  }
 
   getHora(){
     let fechaActual = new Date();
@@ -33,6 +39,9 @@ export class ChatComponent {
   }
 
   getData(){
+    if (this.msj) {
+      
+    }
     this.todosLosMensajes.push(this.getMiMensaje())
     this.http.get<Mensaje>(this.url + this.msj)
     .subscribe((data: Mensaje ) => {
@@ -51,12 +60,12 @@ export class ChatComponent {
 
   selectOption(text: any){
     this.msj=text;
-    console.log(this.msj.indexOf('http'));
+    // console.log(this.msj.indexOf('http'));
     if (this.msj.indexOf('http') >= 0) {
-      console.log("redireccionando");
+      // console.log("redireccionando");
       window.open(`${this.msj}`, '_blank');
     }else{
-      console.log("no funco");
+      // console.log("no funco");
       this.getData();
     }
   }
