@@ -1,27 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Respuesta } from '../modelo/respuesta';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import Tagify from '@yaireo/tagify';
 
 @Component({
   selector: 'app-response',
   templateUrl: './response.component.html',
   styleUrls: ['./response.component.css'],
 })
-export class ResponseComponent implements OnInit {
+export class ResponseComponent implements OnInit,AfterViewInit {
   respuestas: Respuesta[] = [];
   //respuesta: Respuesta;
   url: string = 'https://pp3-python.vercel.app/response';
   opcionSeleccionadaValue: number = 0;
+  keywords = [];
+  placeHolderString = 'Type and press Enter to add more than one keywords...';
+
+  @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
+  tagifyInstance!: Tagify;
 
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
     private route: Router
   ) {
-    //  this.respuesta = {id: 0, answer: '', response: '', moreOptions: false, moreQuestion: false, options: '' }
   }
+
+  ngAfterViewInit(): void {
+    this.tagifyInstance = new Tagify(this.tagInput.nativeElement);
+  }
+
+  handleTagsAdded(e: any) {
+    const tags = e.detail.tagify.value.map((tag: any) => tag.value);
+    console.log('Tags added:', tags);
+  }
+  
   ngOnInit() {
     this.getResponses();
   }
@@ -41,7 +56,10 @@ export class ResponseComponent implements OnInit {
     );
   }
   modificar() {
-    this.http.put<Respuesta>(this.url + '/' + this.opcionSeleccionadaValue,this.respuestas[this.opcionSeleccionadaValue]
+    this.http
+      .put<Respuesta>(
+        this.url + '/' + this.opcionSeleccionadaValue,
+        this.respuestas[this.opcionSeleccionadaValue]
       )
       .subscribe(
         (data) => {
