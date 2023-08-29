@@ -11,9 +11,8 @@
         <label for="text">¿Pregunta?</label>
         <input type="text" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].answer">
         <label for="response">Respuesta</label>
-        <textarea rows="5" style="width: 100%;" #tagInput type="text" 
-        [value]="this.respuestas[opcionSeleccionadaValue].response" (add)="handleTagsAdded($event)">
-        <textarea rows="10" style="width: 100%;" [value]="this.respuestas[opcionSeleccionadaValue].response"></textarea>
+        <textarea rows="10" style="width: 100%;" type="text"
+        [value]="this.respuestas[opcionSeleccionadaValue].response"></textarea>
         <label for="options">Opciones</label>
         <input #tagInput type="text" [value]="this.respuestas[opcionSeleccionadaValue].options" (add)="handleTagsAdded($event)">
         <!-- <input type="text" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].options"> -->
