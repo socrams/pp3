@@ -22,7 +22,7 @@ export class ApiService {
     };
     return new Observable<any>((observer) => {
       this.http
-        .post<any>(this.url + 'login', JSON.stringify(credentials), {
+        .post<any>(this.url + 'auth/login', JSON.stringify(credentials), {
           headers: { 'Content-type': 'application/json' },
         })
         .subscribe(
@@ -80,7 +80,7 @@ export class ApiService {
             resolve(false);
             return false;
         }) :
-        this.http.post(this.url + 'login', { 'token': token })
+        this.http.post(this.url + 'auth/validateToken', { 'token': token })
             .toPromise()
             .then((res) => {
               console.log("token", res);
