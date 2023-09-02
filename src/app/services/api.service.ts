@@ -80,7 +80,7 @@ export class ApiService {
             resolve(false);
             return false;
         }) :
-        this.http.post(this.url + 'auth/validateToken', { 'token': token })
+        this.http.post(this.url + 'auth/validateToken/', { 'token': token })
             .toPromise()
             .then((res) => {
               console.log("token", res);
