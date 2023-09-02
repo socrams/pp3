@@ -22,7 +22,7 @@ export class ApiService {
     };
     return new Observable<any>((observer) => {
       this.http
-        .post<any>(this.url + 'auth/login', JSON.stringify(credentials), {
+        .post<any>(this.url + 'auth/login/', JSON.stringify(credentials), {
           headers: { 'Content-type': 'application/json' },
         })
         .subscribe(
