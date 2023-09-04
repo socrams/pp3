@@ -56,6 +56,7 @@ export class ResponseComponent implements OnInit,AfterViewInit {
     );
   }
   modificar() {
+    console.log(this.respuestas[this.opcionSeleccionadaValue]);
     this.http
       .put<Respuesta>(
         this.url + '/' + this.opcionSeleccionadaValue,
