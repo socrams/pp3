@@ -13,6 +13,9 @@
         <label for="response">Respuesta</label>
         <textarea rows="5" style="width: 100%;" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].response"></textarea>
         <label for="options">Opciones</label>
+        <!-- <input type="text" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].options"> -->
+        <input #tagInput type="text" [ngModel]="respuestas[opcionSeleccionadaValue].options">
+
         <input #tagInput type="text" [value]="this.respuestas[opcionSeleccionadaValue].options" (add)="handleTagsAdded($event)">
         <label for="myCheckbox">¿Tiene mas opciones?</label>
         <input type="checkbox" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].moreoptions">

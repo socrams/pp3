@@ -40,11 +40,11 @@ export class ResponseComponent implements OnInit,AfterViewInit {
   ngOnInit() {
     this.getResponses();
   }
-  mostrarIndex() {
-    console.log('Rsta: ', this.respuestas[this.opcionSeleccionadaValue]);
-    console.log(this.opcionSeleccionadaValue, 'opcion seleccionada');
-    console.log(this.respuestas);
-  }
+  //mostrarIndex() {
+    //console.log('Rsta: ', this.respuestas[this.opcionSeleccionadaValue]);
+    //console.log(this.opcionSeleccionadaValue, 'opcion seleccionada');
+    //console.log(this.respuestas);
+  //}
   getResponses() {
     this.apiService.callURL<Respuesta>('GET', 'response/', null).subscribe(
       (data: any) => {
@@ -64,8 +64,8 @@ export class ResponseComponent implements OnInit,AfterViewInit {
       )
       .subscribe(
         (data) => {
-          console.log(this.respuestas[this.opcionSeleccionadaValue]);
-          console.log('Respuesta modificada con éxito', data);
+          console.log("lo q envio", this.respuestas[this.opcionSeleccionadaValue]);
+          //console.log('Respuesta modificada con éxito', data);
         },
         (error) => {
           console.error('Error al modificar la respuesta', error);
