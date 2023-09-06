@@ -26,12 +26,13 @@ export class GuardsGuard implements CanActivate {
     | UrlTree {
     let isValidToken = this.validateToken();
     console.log(isValidToken);
-    if (!isValidToken) {
-      this.router.navigate(['/login']);
-      return false;
-    } else {
-      return true;
-    }
+    return true;
+    // if (!isValidToken) {
+    //   this.router.navigate(['/login']);
+    //   return false;
+    // } else {
+    //   return true;
+    // }
 
     // return this.apiService
     //   .validateToken()

@@ -16,7 +16,7 @@
         <!-- <input type="text" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].options"> -->
         <input #tagInput type="text" [ngModel]="respuestas[opcionSeleccionadaValue].options">
 
-        <input #tagInput type="text" [value]="this.respuestas[opcionSeleccionadaValue].options" (add)="handleTagsAdded($event)">
+        <input #tagInput type="text" [value]="this.respuestas[opcionSeleccionadaValue].options" (onchange)="cambios()" (add)="handleTagsAdded($event)">
         <label for="myCheckbox">¿Tiene mas opciones?</label>
         <input type="checkbox" [(ngModel)]="this.respuestas[opcionSeleccionadaValue].moreoptions">
         <button class="btn-group btn-group-toggle" (click)="modificar()">Guardar</button>

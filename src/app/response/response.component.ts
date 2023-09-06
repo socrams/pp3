@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
 import { Respuesta } from '../modelo/respuesta';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
@@ -11,7 +11,7 @@ import { url } from '../modelo/config';
   templateUrl: './response.component.html',
   styleUrls: ['./response.component.css'],
 })
-export class ResponseComponent implements OnInit,AfterViewInit {
+export class ResponseComponent implements OnInit,AfterViewInit { //},AfterViewChecked {
   respuestas: Respuesta[] = [];
   url = url + 'response' ;
   opcionSeleccionadaValue: number = 0;
@@ -27,16 +27,27 @@ export class ResponseComponent implements OnInit,AfterViewInit {
     private route: Router
   ) {
   }
+  // ngAfterViewChecked(): void {
+  
+  //   console.log(this.tagInput.nativeElement.value);
+  // }
 
   ngAfterViewInit(): void {
     this.tagifyInstance = new Tagify(this.tagInput.nativeElement);
+    console.log("Entre");
   }
 
+
   handleTagsAdded(e: any) {
+    console.log('Tags added:', e);
     const tags = e.detail.tagify.value.map((tag: any) => tag.value);
-    console.log('Tags added:', tags);
+    
   }
   
+  cambios() {
+    console.log('Hola');
+  }
+
   ngOnInit() {
     this.getResponses();
   }
