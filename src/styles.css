@@ -1,3 +1,8 @@
+
+html,body{
+  background-color: #36393D;
+}
+
 .btn-floating.fixed-bottom {
   position: fixed;
   top: auto;
