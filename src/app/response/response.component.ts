@@ -56,16 +56,24 @@ export class ResponseComponent implements OnInit,AfterViewInit { //},AfterViewCh
     //console.log(this.opcionSeleccionadaValue, 'opcion seleccionada');
     //console.log(this.respuestas);
   //}
-  getResponses() {
-    this.apiService.callURL<Respuesta>('GET', 'response/', null).subscribe(
-      (data: any) => {
-        this.respuestas = data;
-      },
-      (error) => {
-        this.route.navigateByUrl('login');
-      }
-    );
+  getResponses(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.apiService.callURL<Respuesta>('GET', 'response/', null).subscribe(
+        (data: any) => {
+          this.respuestas = data;
+          console.log(this.respuestas);
+          resolve();
+        },
+        (error) => {
+          this.route.navigateByUrl('login');
+          reject(error);
+        }
+      );
+    });
   }
+  
+  
+
   modificar() {
     console.log(this.respuestas[this.opcionSeleccionadaValue]);
     this.http

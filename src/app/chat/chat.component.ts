@@ -19,7 +19,8 @@ export class ChatComponent implements AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    this.scrollToBottomOnInit();
+    if (this.mostrarChat){
+      this.scrollToBottomOnInit()}
   }
 
   getHora(){
@@ -54,18 +55,16 @@ export class ChatComponent implements AfterViewInit {
   scrollToBottomOnInit() {
     setTimeout(() => {
       const messageListEl = this.listamsj?.nativeElement;
-      messageListEl.scrollTop = messageListEl.scrollHeight;
+      messageListEl.scrollTop = messageListEl.scrollHeight ;
     }, 300);
   }
 
   selectOption(text: any){
     this.msj=text;
-    // console.log(this.msj.indexOf('http'));
     if (this.msj.indexOf('http') >= 0) {
       // console.log("redireccionando");
       window.open(`${this.msj}`, '_blank');
     }else{
-      // console.log("no funco");
       this.getData();
     }
   }

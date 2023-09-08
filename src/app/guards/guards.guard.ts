@@ -24,9 +24,9 @@ export class GuardsGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    let isValidToken = this.validateToken();
-    console.log(isValidToken);
-    return true;
+      return true;
+    // let isValidToken = this.validateToken();
+    // console.log(isValidToken);
     // if (!isValidToken) {
     //   this.router.navigate(['/login']);
     //   return false;
@@ -45,13 +45,13 @@ export class GuardsGuard implements CanActivate {
     //   });
   }
 
-  validateToken() {
-    let _token = this.authService.getToken();
-    console.log("Token: ", _token);
-    if (_token && _token != "") {
-      this.apiService.callURL<Boolean>('POST', 'auth/validateToken', null).subscribe((data) => {
-        return data;
-      });
-    }
-  }
+  // validateToken() {
+  //   let _token = this.authService.getToken();
+  //   console.log("Token: ", _token);
+  //   if (_token && _token != "") {
+  //     this.apiService.callURL<Boolean>('POST', 'auth/validateToken', null).subscribe((data) => {
+  //       return data;
+  //     });
+  //   }
+  // }
 }
