@@ -20,8 +20,9 @@
         <button class="btn-group btn-group-toggle" type="submit">Guardar</button>
     </form>
     </div>
-    <div *ngIf="!datosCargados">
-        Cargando datos... <!-- Puedes mostrar un mensaje de carga aquí -->
-      </div>
+<div class="centrar" *ngIf="!datosCargados" >
+    Loading...
+    <div class="loader"></div>
+</div>
     <!-- <input type="text" [(ngModel)]="this.respuestas[j].options"> -->
     <!-- <input #tagInput type="text" [value]="this.respuestas[j].options" (onchange)="cambios()" (add)="handleTagsAdded($event)"> -->
