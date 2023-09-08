@@ -1,8 +1,9 @@
-<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" /> -->
 
-<div class="container" *ngIf="datosCargados">
+<div class="container preguntas" *ngIf="datosCargados">
+    <h1 class="animate-rotate-x">Flujo de Preguntas Respuestas, y opciones</h1>
     <form (ngSubmit)="saveChanges()">
         <select [(ngModel)]="j" [ngModelOptions]="{standalone: true}">
             <option [value]='i' *ngFor="let item of this.respuestas let i = index">

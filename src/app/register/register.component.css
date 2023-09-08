@@ -12,6 +12,12 @@
   background-color: transparent;
   transition: background-color 0.3s ease; /* Transición de color de fondo al hacer hover */
 }
+.table{
+  color: white;
+}
+.table.th{
+  color:red
+}
 
 .btn-primary:hover {
   background-color: #007bff; /* Color de fondo al hacer hover */
@@ -20,4 +26,10 @@
 .btn-danger:hover {
   background-color: #ff0000; /* Color de fondo al hacer hover */
   color: #fff; /* Color del texto al hacer hover */
+}
+.table-responsive{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 70%;
 }
