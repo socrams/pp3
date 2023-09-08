@@ -16,6 +16,7 @@ export class ResponseComponent implements OnInit{//AfterViewInit { //},AfterView
   url = url + 'response' ;
   j: number = 0;
   placeHolderString = 'Type and press Enter to add more than one keywords...';
+  datosCargados: boolean = false;
 
   // @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
   // tagifyInstance!: Tagify;
@@ -35,29 +36,47 @@ export class ResponseComponent implements OnInit{//AfterViewInit { //},AfterView
     this.loadResponses();
   }
 
-  loadResponses(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      this.apiService.callURL<Respuesta>('GET', 'response/', null).subscribe((data: any) => {
+  
+  loadResponses() {
+    this.apiService.callURL<Respuesta | undefined>('GET', 'response/', null)
+      .toPromise() // Convertimos el Observable en una Promesa
+      .then((data: any) => {
         this.respuestas = data;
-          resolve();
-        },(error) => {
-          this.route.navigateByUrl('login');
-          reject(error);
-        });
-    });
+        this.datosCargados = true; // Cambiamos el estado cuando los datos se cargan correctamente
+      })
+      .catch((error) => {
+        console.error(error);
+        // Maneja el error de alguna manera si es necesario
+      });
   }
   
-  saveChanges() {
-    console.log(this.respuestas[this.j]);
-    this.http
-      .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
-      .subscribe((data) => {
-          console.log("lo q envio", this.respuestas[this.j]);
-        },(error) => {
-          console.error('Error al modificar la respuesta', error);
-        });
+    saveChanges() {
+      if (this.respuestas && this.respuestas[this.j]) {
+        this.http
+          .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
+          .subscribe(
+            (data) => {
+              //console.log("Envio: ", this.respuestas[this.j]);
+            },
+            (error) => {
+              console.error('Error al modificar la respuesta', error);
+            }
+          );
+      } else {
+        console.error('No se pudo acceder a la respuesta en la posición', this.j);
+      }
+    }
   }
-}
+//   saveChanges() {
+//     this.http
+//       .put<Respuesta>(this.url + '/' + this.j, this.respuestas?[this.j])
+//       .subscribe((data) => {
+//           console.log("Envio: ", this.respuestas[this.j]);
+//         },(error) => {
+//           console.error('Error al modificar la respuesta', error);
+//         });
+//   }
+// }
 // handleTagsAdded(e: any) {
   //   console.log('Tags added:', e);
   //   const tags = e.detail.tagify.value.map((tag: any) => {

@@ -2,21 +2,26 @@
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 
-<div class="container">
-        <select [(ngModel)]="j">
+<div class="container" *ngIf="datosCargados">
+    <form (ngSubmit)="saveChanges()">
+        <select [(ngModel)]="j" [ngModelOptions]="{standalone: true}">
             <option [value]='i' *ngFor="let item of this.respuestas let i = index">
                 {{ item.answer }}
             </option>
         </select>        
         <label for="text">¿Pregunta?</label>
-        <input type="text" [(ngModel)]="this.respuestas[j].answer">
+        <input type="text" [(ngModel)]="this.respuestas[j].answer" [ngModelOptions]="{standalone: true}">
         <label for="response">Respuesta</label>
-        <textarea rows="5" style="width: 100%;" [(ngModel)]="this.respuestas[j].response"></textarea>
+        <textarea rows="5" style="width: 100%;" [(ngModel)]="this.respuestas[j].response" [ngModelOptions]="{standalone: true}"></textarea>
         <label for="options">Opciones</label>
-        <input #tagInput type="text" [(ngModel)]="respuestas[j].options">
+        <input #tagInput type="text" [(ngModel)]="this.respuestas[j].options" [ngModelOptions]="{standalone: true}">
         <label for="myCheckbox">¿Tiene mas opciones?</label>
-        <input type="checkbox" [(ngModel)]="this.respuestas[j].moreoptions">
-        <button class="btn-group btn-group-toggle" (click)="saveChanges()">Guardar</button>
+        <input type="checkbox" [(ngModel)]="this.respuestas[j].moreoptions" [ngModelOptions]="{standalone: true}">
+        <button class="btn-group btn-group-toggle" type="submit">Guardar</button>
+    </form>
     </div>
+    <div *ngIf="!datosCargados">
+        Cargando datos... <!-- Puedes mostrar un mensaje de carga aquí -->
+      </div>
     <!-- <input type="text" [(ngModel)]="this.respuestas[j].options"> -->
     <!-- <input #tagInput type="text" [value]="this.respuestas[j].options" (onchange)="cambios()" (add)="handleTagsAdded($event)"> -->
