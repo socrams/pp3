@@ -11,15 +11,14 @@ import { url } from '../modelo/config';
   templateUrl: './response.component.html',
   styleUrls: ['./response.component.css'],
 })
-export class ResponseComponent implements OnInit,AfterViewInit { //},AfterViewChecked {
+export class ResponseComponent implements OnInit{//AfterViewInit { //},AfterViewChecked {
   respuestas: Respuesta[] = [];
   url = url + 'response' ;
-  opcionSeleccionadaValue: number = 0;
-  keywords = [];
+  j: number = 0;
   placeHolderString = 'Type and press Enter to add more than one keywords...';
 
-  @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
-  tagifyInstance!: Tagify;
+  // @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
+  // tagifyInstance!: Tagify;
 
   constructor(
     private http: HttpClient,
@@ -27,68 +26,41 @@ export class ResponseComponent implements OnInit,AfterViewInit { //},AfterViewCh
     private route: Router
   ) {
   }
-  // ngAfterViewChecked(): void {
   
-  //   console.log(this.tagInput.nativeElement.value);
+  // ngAfterViewInit(): void {
+  //   this.tagifyInstance = new Tagify(this.tagInput.nativeElement);
   // }
 
-  ngAfterViewInit(): void {
-    this.tagifyInstance = new Tagify(this.tagInput.nativeElement);
-    console.log("Entre");
+  ngOnInit(): void{
+    this.loadResponses();
   }
 
-
-  handleTagsAdded(e: any) {
-    console.log('Tags added:', e);
-    const tags = e.detail.tagify.value.map((tag: any) => tag.value);
-    
-  }
-  
-  cambios() {
-    console.log('Hola');
-  }
-
-  ngOnInit() {
-    this.getResponses();
-  }
-  //mostrarIndex() {
-    //console.log('Rsta: ', this.respuestas[this.opcionSeleccionadaValue]);
-    //console.log(this.opcionSeleccionadaValue, 'opcion seleccionada');
-    //console.log(this.respuestas);
-  //}
-  getResponses(): Promise<void> {
+  loadResponses(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      this.apiService.callURL<Respuesta>('GET', 'response/', null).subscribe(
-        (data: any) => {
-          this.respuestas = data;
-          console.log(this.respuestas);
+      this.apiService.callURL<Respuesta>('GET', 'response/', null).subscribe((data: any) => {
+        this.respuestas = data;
           resolve();
-        },
-        (error) => {
+        },(error) => {
           this.route.navigateByUrl('login');
           reject(error);
-        }
-      );
+        });
     });
   }
   
-  
-
-  modificar() {
-    console.log(this.respuestas[this.opcionSeleccionadaValue]);
+  saveChanges() {
+    console.log(this.respuestas[this.j]);
     this.http
-      .put<Respuesta>(
-        this.url + '/' + this.opcionSeleccionadaValue,
-        this.respuestas[this.opcionSeleccionadaValue]
-      )
-      .subscribe(
-        (data) => {
-          console.log("lo q envio", this.respuestas[this.opcionSeleccionadaValue]);
-          //console.log('Respuesta modificada con éxito', data);
-        },
-        (error) => {
+      .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
+      .subscribe((data) => {
+          console.log("lo q envio", this.respuestas[this.j]);
+        },(error) => {
           console.error('Error al modificar la respuesta', error);
-        }
-      );
+        });
   }
 }
+// handleTagsAdded(e: any) {
+  //   console.log('Tags added:', e);
+  //   const tags = e.detail.tagify.value.map((tag: any) => {
+  //     return { ngModel: this.respuestas };
+  //   });
+  // }
