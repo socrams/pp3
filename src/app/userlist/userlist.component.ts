@@ -6,11 +6,11 @@ import { Usuario } from '../modelo/usuario';
 import { ApiService } from '../services/api.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-userlist',
+  templateUrl: './userlist.component.html',
+  styleUrls: ['./userlist.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class UserList implements OnInit {
   users: Usuario[];
 
   constructor(public http: HttpClient, public route: Router, public apiService: ApiService) {

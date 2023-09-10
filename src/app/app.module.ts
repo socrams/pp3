@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { UserComponent } from './user/user.component';
-import { RegisterComponent } from './register/register.component';
+import { UserList } from './userlist/userlist.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CarreraComponent } from './carrera/carrera.component';
@@ -24,7 +24,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
     ChatComponent,
     WelcomeComponent,
     UserComponent,
-    RegisterComponent,
+    UserList,
     NavbarComponent,
     LogoutComponent,
     CarreraComponent,
