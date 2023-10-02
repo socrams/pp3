@@ -2,24 +2,24 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" /> -->
-
+<h2 class="text-center animate-rotate-x text-3xl text-white py-2" >Flujo de Preguntas Respuestas, y opciones</h2>
 <div class="container preguntas" *ngIf="datosCargados">
-    <h1 class="animate-rotate-x">Flujo de Preguntas Respuestas, y opciones</h1>
+    <label for="" class="block text-sm font-semibold leading-6 text-white">Seleccione la pregunta</label>
     <form (ngSubmit)="saveChanges()">
         <select [(ngModel)]="j" [ngModelOptions]="{standalone: true}">
             <option [value]='i' *ngFor="let item of this.respuestas let i = index">
-                {{ item.answer }}
+                {{item.answer}}
             </option>
-        </select>        
-        <label for="text">¿Pregunta?</label>
+        </select><br>
+        <label for="text" class="pt-1 block text-sm font-semibold leading-6 text-white">¿Pregunta?</label>
         <input type="text" [(ngModel)]="this.respuestas[j].answer" [ngModelOptions]="{standalone: true}">
-        <label for="response">Respuesta</label>
+        <label for="response" class="block text-sm font-semibold leading-6 text-white" >Respuesta</label>
         <textarea rows="5" style="width: 100%;" [(ngModel)]="this.respuestas[j].response" [ngModelOptions]="{standalone: true}"></textarea>
-        <label for="options">Opciones</label>
+        <label for="options" class="block text-sm font-semibold leading-6 text-white">Opciones</label>
         <input #tagInput type="text" [(ngModel)]="this.respuestas[j].options" [ngModelOptions]="{standalone: true}">
-        <label for="myCheckbox">¿Tiene mas opciones?</label>
+        <label for="myCheckbox" class="block text-sm font-semibold leading-6 text-white">¿Tiene mas opciones?</label>
         <input type="checkbox" [(ngModel)]="this.respuestas[j].moreoptions" [ngModelOptions]="{standalone: true}">
-        <button class="btn-group btn-group-toggle" type="submit">Guardar</button>
+        <button class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit">Guardar</button>
     </form>
     </div>
 <div class="centrar" *ngIf="!datosCargados" >
