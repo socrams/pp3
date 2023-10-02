@@ -77,9 +77,9 @@
 }
 
 .openIcon{
-  position: fixed;
+  /*position: fixed;
   right: 1rem;
-  bottom: 1rem;   
+  bottom: 1rem;*/   
   display: flex !important;
   justify-content: center ;
   align-items: center !important;
