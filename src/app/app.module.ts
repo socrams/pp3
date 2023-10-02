@@ -30,7 +30,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
     CarreraComponent,
     ResponseComponent,
     ContenedorMensajeComponent,
-    UserManagementComponent
+    UserManagementComponent,
   ],
   imports: [
     BrowserModule,
