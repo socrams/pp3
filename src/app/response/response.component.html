@@ -10,7 +10,15 @@
             <option [value]='i' *ngFor="let item of this.respuestas let i = index">
                 {{item.answer}}
             </option>
-        </select><br>
+        </select> 
+        <button (click)="addQuestion()" class="ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="blue" 
+            class="w-10 h-10">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        </button>
+          
+        <br>
         <label for="text" class="pt-1 block text-sm font-semibold leading-6 text-white">¿Pregunta?</label>
         <input type="text" [(ngModel)]="this.respuestas[j].answer" [ngModelOptions]="{standalone: true}">
         <label for="response" class="block text-sm font-semibold leading-6 text-white" >Respuesta</label>
