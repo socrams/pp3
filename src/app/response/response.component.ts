@@ -56,7 +56,7 @@ export class ResponseComponent implements OnInit{//AfterViewInit { //},AfterView
           .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
           .subscribe(
             (data) => {
-              //console.log("Envio: ", this.respuestas[this.j]);
+              console.log("Envio: ", this.respuestas[this.j]);
             },
             (error) => {
               console.error('Error al modificar la respuesta', error);
