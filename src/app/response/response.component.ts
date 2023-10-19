@@ -44,7 +44,6 @@ export class ResponseComponent implements OnInit {
       });
   }
   addQuestion() {
-    this.newAnswer.id = undefined ;
     this.newAnswer.answer = 'aca la pregunta'
     this.newAnswer.response = 'test';
     this.newAnswer.options = 'opciones aca';
