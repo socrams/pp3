@@ -1,38 +1,49 @@
-<app-navbar></app-navbar><app-chat style="position: fixed;right: 1rem;bottom: 1rem;"></app-chat>
-<!-- <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
-<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" /> -->
-<h2 class="text-center font-bold underline animate-rotate-x text-3xl text-white py-2" >Flujo de Preguntas Respuestas y opciones</h2>
+<app-navbar></app-navbar>
+<app-chat style="position: fixed;right: 1rem;bottom: 1rem;"></app-chat>
+
+<h2 class="text-center font-bold underline animate-rotate-x text-3xl text-white py-2">
+    Flujo de Preguntas Respuestas y opciones
+</h2>
 <div class="container preguntas" *ngIf="datosCargados">
-    <label for="" class="block text-sm font-semibold leading-6 text-white">Seleccione la pregunta</label>
     <form (ngSubmit)="saveChanges()">
+        <label class="pt-1 block text-sm font-semibold leading-6 text-white">Seleccione la pregunta</label>
         <select [(ngModel)]="j" [ngModelOptions]="{standalone: true}">
+            <!-- *ngIf="this.active" -->
             <option [value]='i' *ngFor="let item of this.respuestas let i = index">
                 {{item.answer}}
             </option>
-        </select> 
-        <button (click)="addQuestion()" class="ml-4">
-            <svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="blue" 
-            class="w-10 h-10">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </select>
+        <button (click)="addQuestion()" class="ml-4" type="reset">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="blue"
+                class="w-10 h-10">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </button>
+        <button type="button" (click)="delete()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         </button>
-          
         <br>
         <label for="text" class="pt-1 block text-sm font-semibold leading-6 text-white">¿Pregunta?</label>
         <input type="text" [(ngModel)]="this.respuestas[j].answer" [ngModelOptions]="{standalone: true}">
-        <label for="response" class="block text-sm font-semibold leading-6 text-white" >Respuesta</label>
-        <textarea rows="5" style="width: 100%;" [(ngModel)]="this.respuestas[j].response" [ngModelOptions]="{standalone: true}"></textarea>
+        <label for="response" class="block text-sm font-semibold leading-6 text-white">Respuesta</label>
+        <textarea rows="5" style="width: 100%;" [(ngModel)]="this.respuestas[j].response"
+            [ngModelOptions]="{standalone: true}"></textarea>
         <label for="options" class="block text-sm font-semibold leading-6 text-white">Opciones</label>
         <input #tagInput type="text" [(ngModel)]="this.respuestas[j].options" [ngModelOptions]="{standalone: true}">
         <label for="myCheckbox" class="block text-sm font-semibold leading-6 text-white">¿Tiene mas opciones?</label>
         <input type="checkbox" [(ngModel)]="this.respuestas[j].moreoptions" [ngModelOptions]="{standalone: true}">
-        <button class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit">Guardar</button>
+        <button
+            class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            type="submit">Guardar</button>
     </form>
-    </div>
-<div class="centrar" *ngIf="!datosCargados" >
+</div>
+<div class="centrar" *ngIf="!datosCargados">
     Loading...
     <div class="loader"></div>
 </div>
-    <!-- <input type="text" [(ngModel)]="this.respuestas[j].options"> -->
-    <!-- <input #tagInput type="text" [value]="this.respuestas[j].options" (onchange)="cambios()" (add)="handleTagsAdded($event)"> -->
+<!-- <input type="text" [(ngModel)]="this.respuestas[j].options"> -->
+<!-- <input #tagInput type="text" [value]="this.respuestas[j].options" (onchange)="cambios()" (add)="handleTagsAdded($event)"> -->

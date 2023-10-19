@@ -13,24 +13,20 @@ import { url } from '../modelo/config';
 })
 export class ResponseComponent implements OnInit {
   respuestas: Respuesta[] = [];
-  newAnswer: Respuesta;
   url = url + 'response';
   j: number = 0;
-  placeHolderString = 'Type and press Enter to add more than one keywords...';
+  active: boolean = true; 
   datosCargados: boolean = false;
-
+  
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
     private route: Router
-  ) {
-    this.newAnswer = new Respuesta()
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadResponses();
   }
-
 
   loadResponses() {
     this.apiService.callURL<Respuesta | undefined>('GET', 'response/', null)
@@ -44,55 +40,43 @@ export class ResponseComponent implements OnInit {
       });
   }
   addQuestion() {
-    this.newAnswer.answer = 'aca la pregunta'
-    this.newAnswer.response = 'test';
-    this.newAnswer.options = 'opciones aca';
-    this.newAnswer.moreoptions = false;
-    this.newAnswer.morequestion = false;
-    console.log('llegue', this.newAnswer);
-    
+    this.active = false;
   }
+
+  delete(){
+    this.http
+           .delete<Respuesta>(this.url + '/' + this.j)
+           .subscribe(
+             (data) => {
+               console.log("Borrado: ",);
+             });
+  }
+
   saveChanges() {
-    if (this.newAnswer.answer == null) {
-      console.log('entre', this.newAnswer);
+    if (this.respuestas[0].id == -1 ) {
+      console.log('entre: ', this.respuestas[0]);
       this.http
-      .post<Respuesta>(this.url + '/', this.newAnswer)
+      .post<Respuesta>(this.url + '/', this.respuestas[0])
       .subscribe(
         (data) => {
-          console.log("nuevo: ", this.newAnswer);
+          console.log("nuevo: ", this.respuestas[0]);
         });
       }
-    //   else {      
-    //   if (this.respuestas && this.respuestas[this.j]) {
-    //     this.http
-    //       .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
-    //       .subscribe(
-    //         (data) => {
-    //           console.log("Envio: ", this.respuestas[this.j]);
-    //         },
-    //         (error) => {
-    //           console.error('Error al modificar la respuesta', error);
-    //         }
-    //       );
-    //   } else {
-    //     console.error('No se pudo acceder a la respuesta en la posición', this.j);
-    //   }
-    // }
+       else {      
+       if (this.respuestas && this.respuestas[this.j]) {
+         this.http
+           .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
+           .subscribe(
+             (data) => {
+               console.log("Envio: ", this.respuestas[this.j]);
+             },
+             (error) => {
+               console.error('Error al modificar la respuesta', error);
+             }
+           );
+       } else {
+         console.error('No se pudo acceder a la respuesta en la posición', this.j);
+       }
+     }
   }
 }
-//   saveChanges() {
-//     this.http
-//       .put<Respuesta>(this.url + '/' + this.j, this.respuestas?[this.j])
-//       .subscribe((data) => {
-//           console.log("Envio: ", this.respuestas[this.j]);
-//         },(error) => {
-//           console.error('Error al modificar la respuesta', error);
-//         });
-//   }
-// }
-// handleTagsAdded(e: any) {
-//   console.log('Tags added:', e);
-//   const tags = e.detail.tagify.value.map((tag: any) => {
-//     return { ngModel: this.respuestas };
-//   });
-// }
