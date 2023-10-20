@@ -14,6 +14,9 @@ export class WelcomeComponent implements OnInit {
   constructor() {
 
   }
+  resize(){
+    console.log('entre');
+  }
   ngOnInit(): void {
     setTimeout(() => {
       const element = document.getElementById('con-bolsa');

@@ -1,18 +1,20 @@
-<div class="openIcon" *ngIf="mostrarChat==false" (click)="mostrarChat=true">
-  <img src="https://cdn-icons-png.flaticon.com/512/61/61516.png" alt="Open-Bot" class="chatIcon">
-</div>
-
-<div class="card text-center cardContainer" *ngIf="mostrarChat==true">
-  <div class="card-header">Beltry - El Bot del Beltran
-    <button class="closeIcon" (click)="mostrarChat=false">x</button>
+  <div class="openIcon" *ngIf="mostrarChat==false" (click)="mostrarChat=true">
+    <img src="https://cdn-icons-png.flaticon.com/512/61/61516.png" alt="Open-Bot" class="chatIcon">
   </div>
-  <div class="card-body msj-container h-100" #listamsj>
-    <div>
-      <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes"
+  
+  <div class="card text-center cardContainer" *ngIf="mostrarChat==true">
+    <div class="card-header">Beltry - El Bot del Beltran
+      <button class="closeIcon" (click)="mostrarChat=false">x</button>
+    </div>
+    <div class="card-body msj-container h-100" #listamsj>
+
+      <div>
+        <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes"
         [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
         {{mensaje.respuesta?.response}}
         <ng-container *ngIf="mensaje.respuesta?.options;">
           <div *ngFor="let option of mensaje.respuesta?.options?.split(', ')">
+      
             <button class="opciones" (click)="selectOption(option)"> {{option}} </button>
           </div>
         </ng-container>

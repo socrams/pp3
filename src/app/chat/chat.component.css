@@ -1,11 +1,8 @@
 .cardContainer{
-  
   width: 500px;
   height: 500px;
   position: fixed;
   padding: 0.3rem;
-
-
   position: fixed;
   right: 1rem;
   bottom: 1rem;   
@@ -27,7 +24,7 @@
 }
 .card-body{
   padding:0.5rem;
-  background-image: url(https://images.unsplash.com/photo-1680100612420-e57b14dd2c7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80);
+  /* background-image: url(https://images.unsplash.com/photo-1680100612420-e57b14dd2c7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80); */
 }
 .enviarMsj:active{
   transform: scale(0.8);
