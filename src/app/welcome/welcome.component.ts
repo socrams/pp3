@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-welcome',
@@ -8,15 +8,21 @@ import { Component, OnInit } from '@angular/core';
 
 
 export class WelcomeComponent implements OnInit {
-  /**
-   *
-   */
-  constructor() {
+  @ViewChild('miIframe') miIframe: ElementRef | any ;
 
+  constructor(private renderer: Renderer2) {
   }
-  resize(){
-    console.log('entre');
+  cambiarTamanioIframe() {
+    const iframe = this.miIframe.nativeElement as HTMLIFrameElement;
+    if (iframe.width === '300') {
+      this.renderer.setStyle(iframe, 'width', '600px');
+      this.renderer.setStyle(iframe, 'height', '400px');
+    } else {
+      this.renderer.setStyle(iframe, 'width', '400px');
+      this.renderer.setStyle(iframe, 'height', '300px');
+    }
   }
+
   ngOnInit(): void {
     setTimeout(() => {
       const element = document.getElementById('con-bolsa');

@@ -1,28 +1,14 @@
 <app-navbar></app-navbar>
-<iframe style="position: fixed; right: 1rem;bottom: 1rem; transition: width 0.5s, height 0.5s;"
-id="miIframe" src="https://pp3-zeta.vercel.app/chat"></iframe>
-  <button onclick=" e()">Cambiar Tamaño</button>
-
-  <script>
-    function cambiarTamanioIframe() {
-      var iframe = document.getElementById('miIframe');
-      if (iframe.style.width === '400px') {
-        iframe.style.width = '600px';
-        iframe.style.height = '400px';
-      } else {
-        iframe.style.width = '400px';
-        iframe.style.height = '300px';
-      }
-    }
-  </script>
-
-
-
-
 <h1 class="titulo">EQUIPO X </h1>
 <div class="contenedor-imagen">
   <img class="sin-bolsa" src="https://i.ibb.co/3vH84RR/Captura-de-pantalla-2023-04-13-135220.png" alt="sin bolsa">
   <img class="con-bolsa" src="https://i.ibb.co/K22gbRp/srx.jpg" alt="con bolsa" id="con-bolsa">
 </div>
 
-<!-- <input attribute='tags-input'> -->
+<iframe
+  #miIframe
+  style="position: fixed; right: 1rem; bottom: 1rem; transition: width 0.5s, height 0.5s;"
+  title="miIframe" (id)="miIframe"
+  src="https://pp3-zeta.vercel.app/chat"></iframe>
+<button (click)="cambiarTamanioIframe()">Cambiar Tamaño</button>
+
