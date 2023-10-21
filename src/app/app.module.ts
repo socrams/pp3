@@ -15,6 +15,7 @@ import { CarreraComponent } from './carrera/carrera.component';
 import { ResponseComponent } from './response/response.component';
 import { ContenedorMensajeComponent } from './contenedor-mensaje/contenedor-mensaje.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { EjemploComponent } from './external/ejemplo/ejemplo.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
     ResponseComponent,
     ContenedorMensajeComponent,
     UserManagementComponent,
+    EjemploComponent,
   ],
   imports: [
     BrowserModule,

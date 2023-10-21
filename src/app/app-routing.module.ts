@@ -11,6 +11,7 @@ import { ResponseComponent } from './response/response.component';
 import { GuardsGuard } from './guards/guards.guard';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UserList } from './userlist/userlist.component';
+import { EjemploComponent } from './external/ejemplo/ejemplo.component';
 
 const routes: Routes = [
   {path:'', component:WelcomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path:'userManagement', component: UserManagementComponent},
   // {path:'carrera', component: CarreraComponent},
   {path:'response', component: ResponseComponent, canActivate: [GuardsGuard]},
+  {path: 'ejemplo', component: EjemploComponent, pathMatch: 'full'}
 
 ];
 
