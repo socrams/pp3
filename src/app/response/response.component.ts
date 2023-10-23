@@ -48,9 +48,10 @@ export class ResponseComponent implements OnInit {
            .delete<Respuesta>(this.url + '/' + this.j)
            .subscribe(
              (data) => {
-               console.log("Borrado: ",data)
+               console.log("Borrado: ", data)
                alert('Borrado correctamente.')
              });
+             window.location.reload()
   }
 
   saveChanges() {
