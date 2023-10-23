@@ -60,18 +60,20 @@ export class ResponseComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log("nuevo: ", this.respuestas[0]);
+          alert('Pregunta Agregada.')
         });
       }
-       else {      
-       if (this.respuestas && this.respuestas[this.j]) {
-         this.http
-           .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
-           .subscribe(
-             (data) => {
-               console.log("Envio: ", this.respuestas[this.j]);
+      else {      
+        if (this.respuestas && this.respuestas[this.j]) {
+          this.http
+          .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
+          .subscribe(
+            (data) => {
+              console.log("Envio: ", this.respuestas[this.j]);
+              alert('Se modifico la respuesta')
              },
              (error) => {
-               console.error('Error al modificar la respuesta', error);
+              alert('Error al modificar la respuesta',);
              }
            );
        } else {
