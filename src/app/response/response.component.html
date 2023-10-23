@@ -7,7 +7,7 @@
 <div class="container preguntas" *ngIf="datosCargados">
     <form (ngSubmit)="saveChanges()">
         <label class="pt-1 block text-sm font-semibold leading-6 text-white">Seleccione la pregunta</label>
-        <select [(ngModel)]="j" [ngModelOptions]="{standalone: true}">
+        <select [(ngModel)]="j" [ngModelOptions]="{standalone: true}" *ngIf="this.active">
             <!-- *ngIf="this.active" -->
             <option [value]='i' *ngFor="let item of this.respuestas let i = index">
                 {{item.answer}}
@@ -20,6 +20,7 @@
                     d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         </button>
+        <button type="button" (click)="cancel()" *ngIf="!this.active">cancelar</button>
         <button type="button" (click)="delete()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-10 h-10">

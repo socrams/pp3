@@ -41,8 +41,12 @@ export class ResponseComponent implements OnInit {
   }
   addQuestion() {
     this.active = false;
+    this.respuestas[this.j].id=-1;
+    
   }
-
+  cancel(){
+  this.active = true;
+  }
   delete(){
     this.http
            .delete<Respuesta>(this.url + '/' + this.j)
@@ -55,13 +59,14 @@ export class ResponseComponent implements OnInit {
   }
 
   saveChanges() {
-    if (this.respuestas[0].id == -1 ) {
-      console.log('entre: ', this.respuestas[0]);
+    if (this.respuestas[this.j].id ==  -1) {
+      this.respuestas[this.j].id = this.respuestas.length+1;
+      console.log(this.respuestas[this.j]);
       this.http
-      .post<Respuesta>(this.url + '/', this.respuestas[0])
+      .post<Respuesta>(this.url + '/', this.respuestas[this.j].id)
       .subscribe(
         (data) => {
-          console.log("nuevo: ", this.respuestas[0]);
+          //console.log("nuevo: ", this.respuestas[0]);
           alert('Pregunta Agregada.')
         });
       }
