@@ -48,6 +48,7 @@ export class ResponseComponent implements OnInit {
   this.active = true;
   }
   delete(){
+    console.log(this.j)
     this.http
            .delete<Respuesta>(this.url + '/' + this.j)
            .subscribe(
@@ -55,10 +56,12 @@ export class ResponseComponent implements OnInit {
                console.log("Borrado: ", data)
                alert('Borrado correctamente.')
              });
-             window.location.reload()
+             //window.location.reload()
   }
 
   saveChanges() {
+    console.log(this.respuestas[this.j]);
+    
     if (this.respuestas[this.j].id ==  -1) {
       this.respuestas[this.j].id = this.respuestas.length+1;
       console.log(this.respuestas[this.j]);
@@ -76,7 +79,7 @@ export class ResponseComponent implements OnInit {
           .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
           .subscribe(
             (data) => {
-              console.log("Envio: ", this.respuestas[this.j]);
+              //console.log("Envio: ", this.respuestas[this.j]);
               alert('Se modifico la respuesta')
              },
              (error) => {
