@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Respuesta } from '../modelo/respuesta';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
@@ -49,8 +49,11 @@ export class ResponseComponent implements OnInit {
   }
   delete(){
     console.log(this.j)
-        this.http
-           .delete<Respuesta>(this.url + '/' + this.j)
+    console.log(this.respuestas[this.j]);
+    console.log(this.respuestas[this.j].id);
+    const to_delete = this.respuestas[this.j].id;
+    this.http
+           .delete(this.url + '/' + to_delete)
            .subscribe(
              (data) => {
                console.log("Borrado: ", data)
@@ -59,36 +62,36 @@ export class ResponseComponent implements OnInit {
              //window.location.reload()
   }
 
-  saveChanges() {
-    console.log(this.respuestas[this.j]);
-    
-    if (this.respuestas[this.j].id ==  -1) {
-      this.respuestas[this.j].id = this.respuestas.length+1;
+  saveChanges() { 
       console.log(this.respuestas[this.j]);
-      this.http
-      .post<Respuesta>(this.url + '/', this.respuestas[this.j].id)
-      .subscribe(
-        (data) => {
-          //console.log("nuevo: ", this.respuestas[0]);
-          alert('Pregunta Agregada.')
-        });
-      }
-      else {      
-        if (this.respuestas && this.respuestas[this.j]) {
-          this.http
-          .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
-          .subscribe(
-            (data) => {
-              //console.log("Envio: ", this.respuestas[this.j]);
-              alert('Se modifico la respuesta')
-             },
-             (error) => {
-              alert('Error al modificar la respuesta',);
-             }
-           );
-       } else {
-         console.error('No se pudo acceder a la respuesta en la posición', this.j);
+  
+      if (this.respuestas[this.j].id ==  -1) {
+        this.respuestas[this.j].id = this.respuestas.length+1;
+        console.log(this.respuestas[this.j]);
+        this.http
+        .post<Respuesta>(this.url+'/', this.respuestas[this.j])
+        .subscribe(
+          (data) => {
+            //console.log("nuevo: ", this.respuestas[0]);
+            alert('Pregunta Agregada.')
+          });
+        }
+        else {
+          if (this.respuestas && this.respuestas[this.j]) {
+            this.http
+            .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
+            .subscribe(
+              (data) => {
+                //console.log("Envio: ", this.respuestas[this.j]);
+                alert('Se modifico la respuesta')
+               },
+               (error) => {
+                alert('Error al modificar la respuesta',);
+               }
+             );
+         } else {
+           console.error('No se pudo acceder a la respuesta en la posición', this.j);
+         }
        }
-     }
-  }
+    }
 }
