@@ -26,7 +26,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
     </button>
-    <button type="button" class="btn btn-alert" (click)="cancel()" *ngIf="!this.active">cancelar</button>
+    <button type="button" class="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" (click)="cancel()" *ngIf="!this.active">cancelar</button>
         <br>
         <label for="text" class="pt-1 block text-sm font-semibold leading-6 text-white">¿Pregunta?</label>
         <input type="text" [(ngModel)]="this.respuestas[j].answer" [ngModelOptions]="{standalone: true}">

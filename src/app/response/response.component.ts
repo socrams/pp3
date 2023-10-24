@@ -71,10 +71,9 @@ export class ResponseComponent implements OnInit {
         .subscribe(
           (data) => {
             //console.log("nuevo: ", this.respuestas[0]);
-            window.location.reload()
-
-            alert('Pregunta Agregada.')
           });
+          window.location.reload()
+          alert('Pregunta Agregada.')
         }
         else {
           if (this.respuestas && this.respuestas[this.j]) {
@@ -82,11 +81,9 @@ export class ResponseComponent implements OnInit {
             .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
             .subscribe(
               (data) => {
-                //console.log("Envio: ", this.respuestas[this.j]);
-                window.location.reload()
-
                 alert('Se modifico la respuesta')
-               },
+                window.location.reload()
+              },
                (error) => {
                 window.location.reload()
 
