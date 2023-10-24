@@ -66,7 +66,7 @@ export class ResponseComponent implements OnInit {
       this.respuestas[this.j].id = this.respuestas.length+1;
       console.log(this.respuestas[this.j]);
       this.http
-      .post<Respuesta>(this.url + '/', this.respuestas[this.j].id)
+      .post<Respuesta>(this.url, this.respuestas[this.j])
       .subscribe(
         (data) => {
           //console.log("nuevo: ", this.respuestas[0]);
