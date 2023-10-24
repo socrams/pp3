@@ -49,8 +49,11 @@ export class ResponseComponent implements OnInit {
   }
   delete(){
     console.log(this.j)
+    console.log(this.respuestas[this.j]);
+    console.log(this.respuestas[this.j].id);
+    const to_delete = this.respuestas[this.j].id;
     this.http
-           .delete<Respuesta>(this.url + '/' + this.j)
+           .delete(this.url + '/' + to_delete)
            .subscribe(
              (data) => {
                console.log("Borrado: ", data)
@@ -66,7 +69,7 @@ export class ResponseComponent implements OnInit {
       this.respuestas[this.j].id = this.respuestas.length+1;
       console.log(this.respuestas[this.j]);
       this.http
-      .post<Respuesta>(this.url, this.respuestas[this.j])
+      .post<Respuesta>(this.url+'/', this.respuestas[this.j])
       .subscribe(
         (data) => {
           //console.log("nuevo: ", this.respuestas[0]);
