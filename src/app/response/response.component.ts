@@ -60,6 +60,7 @@ export class ResponseComponent implements OnInit {
   }
 
   saveChanges() { 
+    this.active=true;
       console.log(this.respuestas[this.j]);
   
       if (this.respuestas[this.j].id ==  -1) {
@@ -70,6 +71,8 @@ export class ResponseComponent implements OnInit {
         .subscribe(
           (data) => {
             //console.log("nuevo: ", this.respuestas[0]);
+            window.location.reload()
+
             alert('Pregunta Agregada.')
           });
         }
@@ -80,13 +83,19 @@ export class ResponseComponent implements OnInit {
             .subscribe(
               (data) => {
                 //console.log("Envio: ", this.respuestas[this.j]);
+                window.location.reload()
+
                 alert('Se modifico la respuesta')
                },
                (error) => {
+                window.location.reload()
+
                 alert('Error al modificar la respuesta',);
                }
              );
          } else {
+          window.location.reload()
+
            console.error('No se pudo acceder a la respuesta en la posición', this.j);
          }
        }
