@@ -54,9 +54,9 @@ export class ResponseComponent implements OnInit {
            .subscribe(
              (data) => {
                console.log("Borrado: ", data)
-               alert('Borrado correctamente.')
-             });
-             //window.location.reload()
+              });
+              window.location.reload()
+              alert('Borrado correctamente.')
   }
 
   saveChanges() { 
