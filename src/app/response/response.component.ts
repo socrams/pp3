@@ -48,9 +48,6 @@ export class ResponseComponent implements OnInit {
   this.active = true;
   }
   delete(){
-    console.log(this.j)
-    console.log(this.respuestas[this.j]);
-    console.log(this.respuestas[this.j].id);
     const to_delete = this.respuestas[this.j].id;
     this.http
            .delete(this.url + '/' + to_delete)
@@ -67,7 +64,7 @@ export class ResponseComponent implements OnInit {
   
       if (this.respuestas[this.j].id ==  -1) {
         this.respuestas[this.j].id = this.respuestas.length+1;
-        console.log(this.respuestas[this.j]);
+        console.log("post: ",this.respuestas[this.j]);
         this.http
         .post<Respuesta>(this.url+'/', this.respuestas[this.j])
         .subscribe(
