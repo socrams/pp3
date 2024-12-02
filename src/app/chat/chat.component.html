@@ -1,7 +1,10 @@
+<div>
+  <img src="assets/fondo.png" style="width: 100%; height: 100%;"><img>
+
   <div class="openIcon" *ngIf="mostrarChat==false" (click)="mostrarChat=true">
     <img src="https://cdn-icons-png.flaticon.com/512/61/61516.png" alt="Open-Bot" class="chatIcon">
   </div>
-  
+
   <div class="card text-center cardContainer" *ngIf="mostrarChat==true">
     <div class="card-header">Beltry - El Bot del Beltran
       <button class="closeIcon" (click)="mostrarChat=false">x</button>
@@ -10,27 +13,28 @@
 
       <div>
         <p style="white-space: pre-wrap;" *ngFor="let mensaje of todosLosMensajes"
-        [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
-        {{mensaje.respuesta?.response}}
-        <ng-container *ngIf="mensaje.respuesta?.options;">
-          <div *ngFor="let option of mensaje.respuesta?.options?.split(', ')">
-      
-            <button class="opciones" (click)="selectOption(option)"> {{option}} </button>
-          </div>
-        </ng-container>
-        <span class="time">
-          {{mensaje.hora}}
+          [ngClass]="(mensaje.id == 'user') ? 'enviado' : 'recibido'">
+          {{mensaje.respuesta?.response}}
+          <ng-container *ngIf="mensaje.respuesta?.options;">
+            <div *ngFor="let option of mensaje.respuesta?.options?.split(', ')">
+
+              <button class="opciones" (click)="selectOption(option)"> {{option}} </button>
+            </div>
+          </ng-container>
+          <span class="time">
+            {{mensaje.hora}}
+          </span>
+        </p>
+      </div>
+    </div>
+    <form class="card-footer text-muted input-group" (ngSubmit)="getData()" id="enviar">
+      <input class="form-control" type="text" [(ngModel)]="msj" [ngModelOptions]="{standalone: true}"
+        placeholder="Mensaje...">
+      <div class="input-group-text" id="basic-addon2" (click)="getData()">
+        <span>
+          <img src="https://cdn-icons-png.flaticon.com/512/786/786407.png" alt="Enviar" width="20px">
         </span>
-      </p>
-    </div>
+      </div>
+    </form>
   </div>
-  <form class="card-footer text-muted input-group" (ngSubmit)="getData()" id="enviar">
-    <input class="form-control" type="text" [(ngModel)]="msj" [ngModelOptions]="{standalone: true}"
-      placeholder="Mensaje...">
-    <div class="input-group-text" id="basic-addon2" (click)="getData()">
-      <span>
-        <img src="https://cdn-icons-png.flaticon.com/512/786/786407.png" alt="Enviar" width="20px">
-      </span>
-    </div>
-  </form>
 </div>
