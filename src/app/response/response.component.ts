@@ -60,8 +60,8 @@ export class ResponseComponent implements OnInit {
              (data) => {
                console.log("Borrado: ", data)
               });
-              window.location.reload()
               alert('Borrado correctamente.')
+              window.location.reload()
   }
 
   saveChanges() { 
@@ -88,15 +88,13 @@ export class ResponseComponent implements OnInit {
                 window.location.reload()
               },
                (error) => {
-                 
                  alert('Error al modificar la respuesta',);
                  window.location.reload()
                }
              );
          } else {
-          window.location.reload()
-
            console.error('No se pudo acceder a la respuesta en la posición', this.j);
+           window.location.reload()
          }
        }
     }
