@@ -7,10 +7,16 @@
   right: 1rem;
   bottom: 1rem;   
   display: flex !important;
+  background-color: rgb(194, 194, 194);
   /* right: 0.5rem;
     bottom: 0.5rem; */
 }
+.mensajeSended{
+  background-color: rgb(194, 194, 194);
+ 
+  border: 2px solid gray
 
+}
 .time {
   color: #cacaca;
   float: right;

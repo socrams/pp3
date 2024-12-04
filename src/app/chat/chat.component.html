@@ -29,9 +29,9 @@
       </div>
     </div>
     <form class="card-footer text-muted input-group" (ngSubmit)="getData()" id="enviar">
-      <input class="form-control" type="text" [(ngModel)]="msj" [ngModelOptions]="{standalone: true}"
+      <input class="form-control mensajeSended" type="text" [(ngModel)]="msj" [ngModelOptions]="{standalone: true}"
         placeholder="Mensaje...">
-      <div class="input-group-text" id="basic-addon2" (click)="getData()">
+      <div class="input-group-text mensajeSended" id="basic-addon2" (click)="getData()">
         <span>
           <img src="https://cdn-icons-png.flaticon.com/512/786/786407.png" alt="Enviar" width="20px">
         </span>
