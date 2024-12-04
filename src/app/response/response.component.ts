@@ -66,9 +66,6 @@ export class ResponseComponent implements OnInit {
 
   saveChanges() { 
     this.active=true;
-    // if (this.respuestas[this.j].answer != '' || this.respuestas[this.j].response != '' ) {
-    //   alert('La pregunta o respeusta no puede ser vacia',);
-    //   }else{
       console.log(this.respuestas[this.j]);
       if (this.respuestas[this.j].id ==  -1) {
         this.respuestas[this.j].id = this.respuestas.length+1;
@@ -79,10 +76,9 @@ export class ResponseComponent implements OnInit {
           (data) => {
             //console.log("nuevo: ", this.respuestas[0]);
           });
-          window.location.reload()
           alert('Pregunta Agregada.')
-        }
-        else {
+          window.location.reload()
+        } else {
           if (this.respuestas && this.respuestas[this.j]) {
             this.http
             .put<Respuesta>(this.url + '/' + this.j, this.respuestas[this.j])
@@ -92,9 +88,9 @@ export class ResponseComponent implements OnInit {
                 window.location.reload()
               },
                (error) => {
-                window.location.reload()
-
-                alert('Error al modificar la respuesta',);
+                 
+                 alert('Error al modificar la respuesta',);
+                 window.location.reload()
                }
              );
          } else {
@@ -103,6 +99,5 @@ export class ResponseComponent implements OnInit {
            console.error('No se pudo acceder a la respuesta en la posición', this.j);
          }
        }
-       // }
     }
 }
