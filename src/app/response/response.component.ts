@@ -39,14 +39,19 @@ export class ResponseComponent implements OnInit {
         console.error(error);// Maneja el error de alguna manera si es necesario
       });
   }
+
   addQuestion() {
     this.active = false;
     this.respuestas[this.j].id=-1;
-    
+    this.respuestas[this.j].answer="";
+    this.respuestas[this.j].response="";
+    this.respuestas[this.j].options="";
   }
+
   cancel(){
   this.active = true;
   }
+
   delete(){
     const to_delete = this.respuestas[this.j].id;
     this.http
@@ -61,8 +66,10 @@ export class ResponseComponent implements OnInit {
 
   saveChanges() { 
     this.active=true;
+    // if (this.respuestas[this.j].answer != '' || this.respuestas[this.j].response != '' ) {
+    //   alert('La pregunta o respeusta no puede ser vacia',);
+    //   }else{
       console.log(this.respuestas[this.j]);
-  
       if (this.respuestas[this.j].id ==  -1) {
         this.respuestas[this.j].id = this.respuestas.length+1;
         console.log("post: ",this.respuestas[this.j]);
@@ -96,5 +103,6 @@ export class ResponseComponent implements OnInit {
            console.error('No se pudo acceder a la respuesta en la posición', this.j);
          }
        }
+       // }
     }
 }
