@@ -44,8 +44,10 @@ export class ChatComponent implements AfterViewInit {
   getData() {
     this.todosLosMensajes.push(this.getMiMensaje());
     this.http.get<Mensaje>(this.url + this.msj).subscribe((data: Mensaje) => {
+      data.hora= this.getHora();
       this.todosLosMensajes.push(data);
       this.scrollToBottom(true);
+      //console.log(data);
     });
     this.msj = '';
     this.scrollToBottom(false);
